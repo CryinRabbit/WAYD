@@ -1,2 +1,2 @@
-Hello, this is CS 480 Project
+Hello, this is CS 480 Project, Welcome!
 

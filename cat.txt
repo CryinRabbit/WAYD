@@ -3,5 +3,9 @@ NYANNYAN!!
 
 add by GO
 
+public static int(int x) {
+	return x;
+}
+
 
 added by chi

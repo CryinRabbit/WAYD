@@ -2,6 +2,10 @@ NYAN!
 NYANNYAN!!
 
 add by GO
+public static int void(int x) {
+	x = 3;
+	return x;
+}
 
 public static int(int x) {
 	return x;

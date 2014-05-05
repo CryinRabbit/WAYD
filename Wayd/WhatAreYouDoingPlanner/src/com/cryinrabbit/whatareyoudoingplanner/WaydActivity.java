@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-//comment
+
 public class WaydActivity extends Activity {
 
 	@Override

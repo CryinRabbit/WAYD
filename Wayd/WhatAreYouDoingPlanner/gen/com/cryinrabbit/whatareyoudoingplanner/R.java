@@ -28,16 +28,12 @@ public final class R {
         public static final int ic_launcher=0x7f020003;
     }
     public static final class id {
-        public static final int action_add=0x7f080007;
-        public static final int action_pic=0x7f080008;
-        public static final int action_settings=0x7f080009;
-        public static final int dummyRow=0x7f080003;
-        public static final int dummyRow2=0x7f080005;
-        public static final int dummy_event_button=0x7f080004;
-        public static final int dummy_event_button2=0x7f080006;
+        public static final int action_settings=0x7f080005;
+        public static final int calendarView1=0x7f080001;
         public static final int fragmentContainer=0x7f080000;
-        public static final int waydCalendar=0x7f080001;
-        public static final int waydTaskTable=0x7f080002;
+        public static final int listView1=0x7f080002;
+        public static final int menu_item_new_event=0x7f080003;
+        public static final int menu_item_new_picture=0x7f080004;
     }
     public static final class layout {
         public static final int activity_wayd=0x7f030000;
@@ -47,11 +43,12 @@ public final class R {
         public static final int wayd=0x7f070000;
     }
     public static final class string {
-        public static final int action_addEvent=0x7f050003;
-        public static final int action_settings=0x7f050001;
-        public static final int action_takePic=0x7f050004;
         public static final int app_name=0x7f050000;
-        public static final int event_button=0x7f050002;
+        public static final int edit_button=0x7f050005;
+        public static final int events_title=0x7f050004;
+        public static final int menu_settings=0x7f050001;
+        public static final int new_event=0x7f050002;
+        public static final int new_picture=0x7f050003;
     }
     public static final class style {
         /** 

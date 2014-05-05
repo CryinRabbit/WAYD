@@ -58,5 +58,9 @@ public class Event {
 	public UUID getId() {
 		return mId;
 	}
+	
+	public String toString() {
+		return mTitle;
+	}
 
 }

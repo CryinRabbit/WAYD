@@ -25,6 +25,9 @@
             </intent-filter>
         </activity>
         
+        <activity android:name="com.cryinrabbit.whatareyoudoingplanner.EventActivity"
+        		android:label="@string/app_name">
+        </activity>
         
         
         

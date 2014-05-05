@@ -2,9 +2,12 @@
 <resources>
 
     <string name="app_name">WAYD</string>
-    <string name="action_settings">Settings</string>
-    <string name="event_button">Dummy Event!</string>
-    <string name="action_addEvent">Add Event</string>
-    <string name="action_takePic">Take a Picture</string>
+    <string name="menu_settings">Settings</string>
+    <string name="new_event">Add Event</string>
+    <string name="new_picture">Add Schedule</string>
+    <string name="events_title">My Events</string>
+    <string name="edit_button">Edit</string>
+    <string name="event_title_label">Event Title</string>
+    <string name="event_title">Please Enter Title For Event:</string>
 
 </resources>

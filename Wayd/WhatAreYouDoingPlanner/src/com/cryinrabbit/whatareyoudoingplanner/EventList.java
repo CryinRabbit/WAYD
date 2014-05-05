@@ -5,16 +5,20 @@ import java.util.UUID;
 
 import android.content.Context;
 
-public class EventRoom {
+/*
+ * Centralized data stash that stores Event Objects
+ */
+
+public class EventList {
 	
-	private static EventRoom sEventRoom;
+	private static EventList sEventList;
 	private Context mAppContext;
 	private ArrayList<Event> mEvents;
 	
-	
-	private EventRoom(Context appContext) {
+	private EventList(Context appContext) {
 		mAppContext = appContext;
 		mEvents = new ArrayList<Event>();
+		
 	}
 	
 	public ArrayList<Event> getEvents() {
@@ -22,20 +26,24 @@ public class EventRoom {
 	}
 	
 	public Event getEvent(UUID id) {
-		for(Event e : mEvents)  {
+		for(Event e : mEvents) {
 			if(e.getId().equals(id))
 				return e;
 		}
-		
 		return null;
 	}
 	
-	public static EventRoom get(Context c) {
-		if(sEventRoom == null) {
-			sEventRoom = new EventRoom(c.getApplicationContext());
+	public void addEvent(Event e) {
+		mEvents.add(e);
+	}
+	
+	
+	public static EventList get(Context c) {
+		if(sEventList == null) {
+			sEventList = new EventList(c.getApplicationContext());
 		}
 		
-		return sEventRoom;
+		return sEventList;
 	}
 
 }

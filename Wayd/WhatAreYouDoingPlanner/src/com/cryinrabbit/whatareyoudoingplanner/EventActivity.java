@@ -1,12 +1,16 @@
 package com.cryinrabbit.whatareyoudoingplanner;
 
-import android.app.Fragment;
+import java.util.UUID;
+
+import android.support.v4.app.Fragment;
 
 public class EventActivity extends SingleFragmentActivity {
 
 	@Override
 	protected Fragment createFragment() {
-		return new EventFragment();
+		UUID eventId = (UUID)getIntent().getSerializableExtra(EventFragment.EXTRA_EVENT_ID);
+		
+		return EventFragment.newInstance(eventId);
 	}
 	
 	

@@ -3,6 +3,8 @@ package com.cryinrabbit.whatareyoudoingplanner;
 import java.util.Date;
 import java.util.UUID;
 
+
+
 public class Event {
 	
 	private String mTitle;
@@ -10,14 +12,16 @@ public class Event {
 	private Date mStartDate;
 	private Date mEndDate;
 	private String mLocation;
+	private Date mTime;
+	
 	
 	public Event() {
 		mId = UUID.randomUUID();
 		mStartDate = new Date();
 		mEndDate = new Date();
+		mTime = new Date();
 		
 	}
-	
 	
 	public void setLocation(String loc) {
 		mLocation = loc;
@@ -45,6 +49,14 @@ public class Event {
 
 	public Date getEndDate() {
 		return mEndDate;
+	}
+	
+	public void setTime(Date time) {
+		mTime = time;
+	}
+	
+	public Date getTime() {
+		return mTime;
 	}
 
 	public void setEndDate(Date endDate) {

@@ -1,8 +1,7 @@
 package com.cryinrabbit.whatareyoudoingplanner;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
 public abstract class SingleFragmentActivity extends FragmentActivity {
@@ -13,7 +12,7 @@ public abstract class SingleFragmentActivity extends FragmentActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_wayd);
-		FragmentManager fm = getFragmentManager();
+		android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
 		Fragment fragment = fm.findFragmentById(R.id.fragmentContainer);
 		
 		if(fragment == null) {

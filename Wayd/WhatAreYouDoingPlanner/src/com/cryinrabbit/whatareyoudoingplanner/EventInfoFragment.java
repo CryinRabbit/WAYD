@@ -16,7 +16,7 @@ public class EventInfoFragment extends DialogFragment {
 	
 	@Override
 	public Dialog onCreateDialog(Bundle savedInstanceState) {
-		return new AlertDialog.Builder(getActivity()).setTitle(mTitle)
+		return new AlertDialog.Builder(getActivity()).setTitle(mTitle).setMessage("No Location Yet")
 				.setPositiveButton(android.R.string.ok, null).create();
 	}
 

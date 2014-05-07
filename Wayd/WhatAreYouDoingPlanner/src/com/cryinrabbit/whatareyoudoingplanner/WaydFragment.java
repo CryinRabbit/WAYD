@@ -1,5 +1,9 @@
 package com.cryinrabbit.whatareyoudoingplanner;
 
+/*
+ *Class to handle the list of events..
+ */
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -37,6 +41,7 @@ public class WaydFragment extends ListFragment {
 		
 	}
 	
+	
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
@@ -50,6 +55,7 @@ public class WaydFragment extends ListFragment {
 			case R.id.menu_item_new_event:
 				Event e = new Event();
 				EventList.get(getActivity()).addEvent(e);
+				EventList.get(getActivity()).removeEvent(e);
 				Intent i = new Intent(getActivity(), EventPagerActivity.class);
 				i.putExtra(EventFragment.EXTRA_EVENT_ID, e.getId());
 				startActivityForResult(i,0);
@@ -66,8 +72,9 @@ public class WaydFragment extends ListFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		
 		View v = inflater.inflate(R.layout.fragment_wayd, parent, false);
-		
+				 
 		EventAdapter adapter = new EventAdapter(mEvents);
+		
 		
 	    lv = (ListView)v.findViewById(R.id.listView1);
 		lv.setAdapter(adapter);
@@ -102,6 +109,7 @@ public class WaydFragment extends ListFragment {
 			super(getActivity(),0,events);
 		}
 		
+		
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if(convertView == null) {
 				convertView = getActivity().getLayoutInflater().inflate(R.layout.list_event_item, null);
@@ -110,6 +118,7 @@ public class WaydFragment extends ListFragment {
 			Event e = getItem(position);
 			TextView titleTextView =
 					(TextView)convertView.findViewById(R.id.event_list_item_titleTextView);
+			
 			titleTextView.setText(e.getTitle());
 			
 			TextView timeTextView =

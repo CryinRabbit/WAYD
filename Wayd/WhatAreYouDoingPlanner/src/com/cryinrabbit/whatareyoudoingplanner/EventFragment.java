@@ -95,17 +95,22 @@ public class EventFragment extends android.support.v4.app.Fragment {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-				// TODO Auto-generated method stub
-				
+	
 			}
 
 			@Override
 			public void afterTextChanged(Editable s) {
 				
-				// TODO Auto-generated method stub
+				if(mEvent.getTitle().equals("")) {
+					mEvent.setTitle("Untitled");
+				}
 				
 			}
+			
+			
+				
 		});
+		
 		
 		mTimeButton = (Button)v.findViewById(R.id.event_time);
 		mTimeButton.setOnClickListener(new View.OnClickListener() {

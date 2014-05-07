@@ -25,12 +25,17 @@ public class EventList {
 		return mEvents;
 	}
 	
+	
 	public Event getEvent(UUID id) {
 		for(Event e : mEvents) {
 			if(e.getId().equals(id))
 				return e;
 		}
 		return null;
+	}
+	
+	public void removeEvent(Event e ) {
+		mEvents.remove(e);
 	}
 	
 	public void addEvent(Event e) {

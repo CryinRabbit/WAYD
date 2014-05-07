@@ -1,7 +1,7 @@
 package com.cryinrabbit.whatareyoudoingplanner;
 
 /*
- *Class to handle the list of events
+ *Class to handle the list of events..
  */
 
 import java.util.ArrayList;

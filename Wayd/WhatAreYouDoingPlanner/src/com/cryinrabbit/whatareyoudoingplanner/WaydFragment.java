@@ -132,9 +132,4 @@ public class WaydFragment extends ListFragment {
 	
 		
 		
-	}
-	
-	
-	
-	
-
+}

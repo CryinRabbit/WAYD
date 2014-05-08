@@ -2,6 +2,8 @@ package com.cryinrabbit.whatareyoudoingplanner;
 
 /*
  *Class to handle the list of events..
+ *
+ *Starting commit by Danny
  */
 
 import java.util.ArrayList;

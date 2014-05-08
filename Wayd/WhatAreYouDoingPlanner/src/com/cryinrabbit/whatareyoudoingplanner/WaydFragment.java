@@ -3,7 +3,7 @@ package com.cryinrabbit.whatareyoudoingplanner;
 /*
  *Class to handle the list of events..
  *
- *Starting commit by Danny
+ *Starting commit by Danny today
  */
 
 import java.util.ArrayList;

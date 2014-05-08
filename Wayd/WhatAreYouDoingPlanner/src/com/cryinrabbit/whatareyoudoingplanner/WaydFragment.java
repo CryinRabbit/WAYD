@@ -2,8 +2,6 @@ package com.cryinrabbit.whatareyoudoingplanner;
 
 /*
  *Class to handle the list of events..
- *
- *Starting commit by Danny today
  */
 
 import java.util.ArrayList;
@@ -13,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,15 +31,14 @@ public class WaydFragment extends ListFragment {
 	private static final String EVENT_INFO_DIALOG ="info";
 	private static final String TAG = "EventListFragment";
 	private ListView lv;
-
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setHasOptionsMenu(true);
 		
-		mEvents = EventList.get(getActivity()).getEvents();		
-		
+		mEvents = EventList.get(getActivity()).getEvents();
+			
 	}
 	
 	
@@ -57,7 +55,6 @@ public class WaydFragment extends ListFragment {
 			case R.id.menu_item_new_event:
 				Event e = new Event();
 				EventList.get(getActivity()).addEvent(e);
-				EventList.get(getActivity()).removeEvent(e);
 				Intent i = new Intent(getActivity(), EventPagerActivity.class);
 				i.putExtra(EventFragment.EXTRA_EVENT_ID, e.getId());
 				startActivityForResult(i,0);
@@ -74,13 +71,12 @@ public class WaydFragment extends ListFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		
 		View v = inflater.inflate(R.layout.fragment_wayd, parent, false);
-				 
+		
 		EventAdapter adapter = new EventAdapter(mEvents);
-		
-		
-	    lv = (ListView)v.findViewById(R.id.listView1);
+		lv = (ListView)v.findViewById(R.id.listView1);
 		lv.setAdapter(adapter);
 		
+			   
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			 
             public void onItemClick(AdapterView<?> parent, View view,
@@ -88,7 +84,7 @@ public class WaydFragment extends ListFragment {
             	Event e = (Event)lv.getItemAtPosition(position);
             	
             	FragmentManager fm = getActivity().getSupportFragmentManager();
-            	EventInfoFragment dialog = new EventInfoFragment(e.getTitle());
+            	EventInfoFragment dialog = new EventInfoFragment(e.getTitle(), e.getLocation());
             	dialog.show(fm, EVENT_INFO_DIALOG);
               
             }
@@ -137,10 +133,13 @@ public class WaydFragment extends ListFragment {
 			
 			timeTextView.setText(t);
 			
+			
+			
 			return convertView;
+		
 		}
-	}
 	
 		
 		
+	}
 }

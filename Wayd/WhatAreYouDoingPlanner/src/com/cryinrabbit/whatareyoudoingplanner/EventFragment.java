@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 	private Event mEvent;
 	private EditText mTitleField;
 	private Button mTimeButton;
+	private EditText mLocationField;
 	public static final String EXTRA_EVENT_ID =
 			"com.cryinrabbit.whatareyoudoingplanner.event_id";
 	private static final String DIALOG_TIME = "time";
@@ -82,7 +84,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 		
 		View v = inflater.inflate(R.layout.eventfragment, parent, false);
 
-		getActivity().getActionBar().setDisplayHomeAsUpEnabled(false);
+		getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
 
 		mTitleField = (EditText)v.findViewById(R.id.event_title);
 		mTitleField.setText(mEvent.getTitle());
@@ -101,9 +103,6 @@ public class EventFragment extends android.support.v4.app.Fragment {
 			@Override
 			public void afterTextChanged(Editable s) {
 				
-				if(mEvent.getTitle().equals("")) {
-					mEvent.setTitle("Untitled");
-				}
 				
 			}
 			
@@ -111,6 +110,30 @@ public class EventFragment extends android.support.v4.app.Fragment {
 				
 		});
 		
+		mLocationField = (EditText)v.findViewById(R.id.event_location);
+		mLocationField.setText(mEvent.getLocation());
+		getActivity().setTitle(mEvent.getLocation());
+		mLocationField.addTextChangedListener(new TextWatcher() {
+			public void onTextChanged(CharSequence c, int start, int before, int count) {
+				mEvent.setLocation(c.toString());
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+	
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+				
+			}
+			
+			
+				
+		});
+
 		
 		mTimeButton = (Button)v.findViewById(R.id.event_time);
 		mTimeButton.setOnClickListener(new View.OnClickListener() {

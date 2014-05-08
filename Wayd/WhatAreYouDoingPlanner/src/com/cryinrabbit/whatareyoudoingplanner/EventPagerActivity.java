@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 
 
@@ -20,6 +21,7 @@ public class EventPagerActivity extends FragmentActivity {
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		Log.e("Msg", "EventPagerActivity executed");
 		super.onCreate(savedInstanceState);
 		mViewPager = new ViewPager(this);
 		mViewPager.setId(R.id.viewPager);
@@ -48,6 +50,8 @@ public class EventPagerActivity extends FragmentActivity {
 				break;
 			}
 		}
+		
+		
 		
 		
 		

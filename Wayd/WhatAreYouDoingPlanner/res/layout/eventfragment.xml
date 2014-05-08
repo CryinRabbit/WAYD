@@ -37,15 +37,23 @@
         	android:layout_height="wrap_content"
         	android:text="@string/event_location"
         	style="?android:listSeparatorTextViewStyle"/>
+
         
-        <Button
+         <EditText 
+         android:id="@+id/event_location"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="@string/event_location"/>
+        
+             
+        <!-- Button
            android:id="@+id/event_location"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:gravity="center"
            android:text="Set Location"
            android:textSize="15sp"
-           android:padding="5dp" />
+           android:padding="5dp" /-->
         
         
 

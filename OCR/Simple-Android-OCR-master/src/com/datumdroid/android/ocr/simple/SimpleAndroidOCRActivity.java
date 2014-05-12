@@ -23,6 +23,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.googlecode.tesseract.android.TessBaseAPI;
 
@@ -39,7 +42,7 @@ public class SimpleAndroidOCRActivity extends Activity {
 	private static final String TAG = "SimpleAndroidOCR.java";
 
 	protected Button _button;
-	// protected ImageView _image;
+	protected ImageView _image;
 	protected EditText _field;
 	protected String _path;
 	protected boolean _taken;
@@ -61,7 +64,6 @@ public class SimpleAndroidOCRActivity extends Activity {
 					Log.v(TAG, "Created directory " + path + " on sdcard");
 				}
 			}
-
 		}
 		
 		// lang.traineddata file with the app (in assets folder)
@@ -70,22 +72,25 @@ public class SimpleAndroidOCRActivity extends Activity {
 		// This area needs work and optimization
 		if (!(new File(DATA_PATH + "tessdata/" + lang + ".traineddata")).exists()) {
 			try {
-
+				
+				//GZIPInputStream gin = new GZIPInputStream(in);
 				AssetManager assetManager = getAssets();
 				InputStream in = assetManager.open("tessdata/" + lang + ".traineddata");
-				//GZIPInputStream gin = new GZIPInputStream(in);
 				OutputStream out = new FileOutputStream(DATA_PATH
 						+ "tessdata/" + lang + ".traineddata");
 
 				// Transfer bytes from in to out
 				byte[] buf = new byte[1024];
 				int len;
+
 				//while ((lenf = gin.read(buff)) > 0) {
 				while ((len = in.read(buf)) > 0) {
 					out.write(buf, 0, len);
 				}
-				in.close();
+				
 				//gin.close();
+				in.close();
+				
 				out.close();
 				
 				Log.v(TAG, "Copied " + lang + " traineddata");
@@ -98,14 +103,27 @@ public class SimpleAndroidOCRActivity extends Activity {
 
 		setContentView(R.layout.main);
 
-		// _image = (ImageView) findViewById(R.id.image);
+		_image = (ImageView) findViewById(R.id.imageView);
 		_field = (EditText) findViewById(R.id.field);
 		_button = (Button) findViewById(R.id.button);
 		_button.setOnClickListener(new ButtonClickHandler());
-
 		_path = DATA_PATH + "/ocr.jpg";
+		
+		configureImageButton();
 	}
 
+	public void configureImageButton(){
+		ImageButton gallery_btn = (ImageButton) findViewById(R.id.imageView);
+		gallery_btn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(SimpleAndroidOCRActivity.this, "Scan Existing Image", Toast.LENGTH_LONG).show();
+				
+			}
+		});
+	}
+	
 	public class ButtonClickHandler implements View.OnClickListener {
 		public void onClick(View view) {
 			Log.v(TAG, "Starting Camera app");
@@ -204,7 +222,7 @@ public class SimpleAndroidOCRActivity extends Activity {
 			Log.e(TAG, "Couldn't correct orientation: " + e.toString());
 		}
 
-		// _image.setImageBitmap( bitmap );
+		_image.setImageBitmap( bitmap );
 		
 		Log.v(TAG, "Before baseApi");
 
@@ -221,7 +239,7 @@ public class SimpleAndroidOCRActivity extends Activity {
 		// We will display a stripped out trimmed alpha-numeric version of it (if lang is eng)
 		// so that garbage doesn't make it to the display.
 
-		Log.v(TAG, "OCRED TEXT: " + recognizedText);
+		Log.v(TAG, "OCR TEXT: " + recognizedText);
 
 		if ( lang.equalsIgnoreCase("eng") ) {
 			recognizedText = recognizedText.replaceAll("[^a-zA-Z0-9]+", " ");
@@ -233,7 +251,6 @@ public class SimpleAndroidOCRActivity extends Activity {
 			_field.setText(_field.getText().toString().length() == 0 ? recognizedText : _field.getText() + " " + recognizedText);
 			_field.setSelection(_field.getText().toString().length());
 		}
-		
 		// Cycle done.
 	}
 	

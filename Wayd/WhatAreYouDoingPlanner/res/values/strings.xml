@@ -15,8 +15,9 @@
     <string name="event_title">Event Title</string>
     <string name="event_time">Event Time</string>
     <string name="event_location">Event Location</string>
-    <string name="date_picker_title">Date Of Event:</string>
+    <string name="date_picker_title">Date Of Event</string>
     <string name="time_picker_title">Time Of Event</string>
- 
+	<string name="settime">Set Time</string> 
+	<string name="setdate">Set Date</string>
 
 </resources>

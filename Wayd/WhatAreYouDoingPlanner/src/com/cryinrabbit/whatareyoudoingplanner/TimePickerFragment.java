@@ -1,5 +1,10 @@
 package com.cryinrabbit.whatareyoudoingplanner;
 
+/*
+ * Class that handles the time button to display
+ * a dialog so that user can select time for an event
+ */
+
 import java.util.Calendar;
 import java.util.Date;
 

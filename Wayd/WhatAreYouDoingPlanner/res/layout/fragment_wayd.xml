@@ -5,10 +5,11 @@
     android:orientation="vertical"
     android:background="@drawable/bg0" >
     
-     <CalendarView
+    <CalendarView
          android:id="@+id/calendarView1"
          android:layout_width="match_parent"
-         android:layout_height="226dp" 
+         android:layout_height="226dp"
+         android:minDate="05/11/2014"
           style="?android:listSeparatorTextViewStyle"/>
 
     <ListView

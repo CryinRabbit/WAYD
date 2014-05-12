@@ -17,6 +17,8 @@
         android:id="@+id/action_settings"
         android:title="@string/menu_settings"
         android:showAsAction="never"/>
+	 
+	 
     
   
 

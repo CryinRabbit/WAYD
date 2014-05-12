@@ -1,5 +1,10 @@
 package com.cryinrabbit.whatareyoudoingplanner;
 
+/*
+ * Class to handle action of swiping to right and left through
+ * events created by the user
+ */
+
 import java.util.ArrayList;
 import java.util.UUID;
 

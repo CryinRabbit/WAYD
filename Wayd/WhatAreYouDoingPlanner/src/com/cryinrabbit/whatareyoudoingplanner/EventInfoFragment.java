@@ -1,5 +1,10 @@
 package com.cryinrabbit.whatareyoudoingplanner;
 
+/*
+ * This class handles the dialog for getting event info when
+ * user taps on a cell of the list view in the main menu
+ */
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;

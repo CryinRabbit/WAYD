@@ -1,17 +1,17 @@
 package com.cryinrabbit.whatareyoudoingplanner;
 
 /*
- *Class to handle the list of events..
+ *This is the main menu of the app
  */
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -22,6 +22,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
+import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -32,6 +34,10 @@ public class WaydFragment extends ListFragment {
 	private static final String EVENT_INFO_DIALOG ="info";
 	private static final String TAG = "EventListFragment";
 	private ListView lv;
+	private CalendarView calendar;
+	private int yearSelected; //year selected by user
+	private int monthSelected; //month selected by user
+	private int dayOfMonthSelected; //day of month selected by user
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -71,8 +77,10 @@ public class WaydFragment extends ListFragment {
 	}
 	
 	@Override
+	//This method handles the action bar
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
+			//Handles + button to add event
 			case R.id.menu_item_new_event:
 			//case R.string.new_event:
 				Event e = new Event();
@@ -81,6 +89,8 @@ public class WaydFragment extends ListFragment {
 				i.putExtra(EventFragment.EXTRA_EVENT_ID, e.getId());
 				startActivityForResult(i,0);
 				return true;
+				
+			
 			case R.string.take_photo:
 				return true;
 			case R.string.choose_existing:
@@ -90,16 +100,49 @@ public class WaydFragment extends ListFragment {
 		}
 	}
 	
+	//This method takes care of removing events
+	//that are empty
+	private void removeEmptyEvents(ArrayList<Event> e) {
+		for(int i = 0; i < e.size(); i++) {
+			if(e.get(i).getTitle() == null)
+				e.remove(i);
+			
+		}		
+	}
+	
+	//This method will take care of updating list of events
+	//according to the day user chooses in the calendar
+	private ArrayList<Event> eventsFromSpecifiedCalendar(ArrayList<Event> e) {
+		ArrayList<Event> temp = (ArrayList<Event>) e.clone();
+		
+		for(int i = 0; i < temp.size(); i++) {
+			//check if date of the Events list matches date from the
+			//date specified in the calendar
+			
+			
+		}
+		
+		return temp;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		
 		View v = inflater.inflate(R.layout.fragment_wayd, parent, false);
 		
+		calendar = (CalendarView)v.findViewById(R.id.calendarView1);
+		
+		///calendar.setShownWeekCount(2);
+	
+		removeEmptyEvents(mEvents);
+		
 		EventAdapter adapter = new EventAdapter(mEvents);
 		lv = (ListView)v.findViewById(R.id.listView1);
 		lv.setAdapter(adapter);
 		
-			   
+	
+		//Comment
+		//Listener Handle the list view	   
 		lv.setOnItemClickListener(new OnItemClickListener() {
 			 
             public void onItemClick(AdapterView<?> parent, View view,
@@ -113,6 +156,17 @@ public class WaydFragment extends ListFragment {
             }
 
        }); 
+		
+		//Listener to handle calendar
+	   calendar.setOnDateChangeListener(new OnDateChangeListener() {
+		   public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+			  yearSelected = year;
+			  monthSelected = month;
+			  dayOfMonthSelected = dayOfMonth;
+			  
+			   
+		   }
+	   });
   
 		
 		return v;

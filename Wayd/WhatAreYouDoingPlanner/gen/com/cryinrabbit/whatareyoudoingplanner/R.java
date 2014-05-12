@@ -32,7 +32,7 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f05000b;
-        public static final int action_settings=0x7f05000e;
+        public static final int action_settings=0x7f05000f;
         public static final int button1=0x7f050002;
         public static final int calendarView1=0x7f050007;
         public static final int dialog_time_timePicker=0x7f050003;
@@ -45,6 +45,7 @@ public final class R {
         public static final int listView1=0x7f050008;
         public static final int login_button=0x7f05000c;
         public static final int menu_item_new_event=0x7f05000d;
+        public static final int menu_item_new_picture=0x7f05000e;
         public static final int viewPager=0x7f050000;
     }
     public static final class layout {
@@ -60,7 +61,6 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f060000;
-        public static final int choose_existing=0x7f060011;
         public static final int date_picker_title=0x7f06000e;
         public static final int delete_crime=0x7f060006;
         public static final int edit_button=0x7f060009;
@@ -75,7 +75,6 @@ public final class R {
         public static final int new_picture=0x7f060003;
         public static final int show_subtitle=0x7f060004;
         public static final int subtitle=0x7f060007;
-        public static final int take_photo=0x7f060010;
         public static final int time_picker_title=0x7f06000f;
     }
     public static final class style {

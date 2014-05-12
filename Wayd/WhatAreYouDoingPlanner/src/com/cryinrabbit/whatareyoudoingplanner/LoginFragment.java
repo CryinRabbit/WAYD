@@ -1,5 +1,10 @@
 package com.cryinrabbit.whatareyoudoingplanner;
 
+/*
+ * Handles the login screen of the app
+ * Facebook stuff is handled here
+ */
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

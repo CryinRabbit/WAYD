@@ -4,18 +4,20 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/bg0" >
-
+    
     <CalendarView
-        android:id="@+id/calendarView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+         android:id="@+id/calendarView1"
+         android:layout_width="match_parent"
+         android:layout_height="226dp"
+         android:minDate="05/11/2014"
+          style="?android:listSeparatorTextViewStyle"/>
 
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    
-    </ListView>
-  
+        android:layout_height="wrap_content"
+        android:gravity="bottom"/>
+
+   
  
  </LinearLayout>

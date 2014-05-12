@@ -17,6 +17,22 @@
          android:layout_height="wrap_content"
          android:hint="@string/event_title"/>
      
+     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/date_picker_title"
+        style="?android:listSeparatorTextViewStyle"/>
+     
+     <Button
+           android:id="@+id/event_date"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:text="@string/setdate"
+           android:textSize="15sp"
+           android:padding="5dp" />
+     
+    
       <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,24 +44,32 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:gravity="center"
-           android:text="Set Time"
-           android:textSize="15sp"
+           android:text="@string/settime"
+           android:textSize="15sp" 
            android:padding="5dp" />
-       
+      
         <TextView
        	 	android:layout_width="match_parent"
         	android:layout_height="wrap_content"
         	android:text="@string/event_location"
         	style="?android:listSeparatorTextViewStyle"/>
+
         
-        <Button
+         <EditText 
+         android:id="@+id/event_location"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="@string/event_location"/>
+        
+             
+        <!-- Button
            android:id="@+id/event_location"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:gravity="center"
            android:text="Set Location"
            android:textSize="15sp"
-           android:padding="5dp" />
+           android:padding="5dp" /-->
         
         
 

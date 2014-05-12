@@ -1,0 +1,37 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.cryinrabbit.whatareyoudoingplanner.WaydActivity" >
+    
+     <item android:id="@+id/menu_item_new_event"
+        android:icon="@drawable/ic_action_new"
+        android:title="@string/new_event"
+        android:showAsAction="ifRoom"/>
+    
+    <!-- item android:id="@+id/menu_item_new_picture"
+        android:icon="@drawable/ic_action_camera"
+        android:title="@string/new_picture"
+        android:showAsAction="ifRoom"/-->
+        
+    <!-- SubMenu android:id="@+id/menu_item_new_picture"
+        android:icon="@drawable/ic_action_camera"
+        android:title="@string/new_picture"
+        android:showAsAction="ifRoom">
+        
+    </SubMenu-->
+	 
+	 <item
+        android:id="@+id/action_settings"
+        android:title="@string/menu_settings"
+        android:showAsAction="never"/>
+	 
+<<<<<<< HEAD
+=======
+	 
+    
+  
+>>>>>>> 2d9c9ab5c4b3b07703d1b32f5b58673b1ccf447a
+
+	 
+	 
+</menu>

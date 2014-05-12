@@ -8,16 +8,24 @@
         android:title="@string/new_event"
         android:showAsAction="ifRoom"/>
     
-    <item android:id="@+id/menu_item_new_picture"
+    <!-- item android:id="@+id/menu_item_new_picture"
         android:icon="@drawable/ic_action_camera"
         android:title="@string/new_picture"
-        android:showAsAction="ifRoom"/>
-    
+        android:showAsAction="ifRoom"/-->
+        
+    <!-- SubMenu android:id="@+id/menu_item_new_picture"
+        android:icon="@drawable/ic_action_camera"
+        android:title="@string/new_picture"
+        android:showAsAction="ifRoom">
+        
+    </SubMenu-->
+	 
 	 <item
         android:id="@+id/action_settings"
         android:title="@string/menu_settings"
         android:showAsAction="never"/>
-    
-  
+	 
 
+	 
+	 
 </menu>

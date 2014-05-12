@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -45,6 +46,26 @@ public class WaydFragment extends ListFragment {
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
+		
+		/*
+		// add event
+		SubMenu subMenu1 = menu.addSubMenu(R.id.menu_item_new_event);
+		MenuItem subMenu1Item = subMenu1.getItem();
+		subMenu1Item.setIcon(R.drawable.ic_action_new);
+		subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
+*/
+		
+		// camera drop down menu
+		SubMenu subMenu2 = menu.addSubMenu(R.string.new_picture);
+
+		subMenu2.add(R.string.take_photo);
+		subMenu2.add(R.string.choose_existing);
+
+		MenuItem subMenu2Item = subMenu2.getItem();
+		subMenu2Item.setIcon(R.drawable.ic_action_camera);
+		subMenu2Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+
 		inflater.inflate(R.menu.wayd, menu);		
 		
 	}
@@ -53,17 +74,19 @@ public class WaydFragment extends ListFragment {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
 			case R.id.menu_item_new_event:
+			//case R.string.new_event:
 				Event e = new Event();
 				EventList.get(getActivity()).addEvent(e);
 				Intent i = new Intent(getActivity(), EventPagerActivity.class);
 				i.putExtra(EventFragment.EXTRA_EVENT_ID, e.getId());
 				startActivityForResult(i,0);
 				return true;
+			case R.string.take_photo:
+				return true;
+			case R.string.choose_existing:
+				return true;
 			default:
-				return super.onOptionsItemSelected(item);
-				
-				
-				
+				return super.onOptionsItemSelected(item);	
 		}
 	}
 	

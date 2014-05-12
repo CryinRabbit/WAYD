@@ -12,6 +12,7 @@ import android.content.Context;
 public class EventList {
 	
 	private static EventList sEventList;
+	@SuppressWarnings("unused")
 	private Context mAppContext;
 	private ArrayList<Event> mEvents;
 	

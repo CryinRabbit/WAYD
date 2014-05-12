@@ -54,6 +54,7 @@ public final class R {
         public static final int fragment_wayd=0x7f030003;
         public static final int list_event_item=0x7f030004;
         public static final int login_fragment=0x7f030005;
+        public static final int splash_screen=0x7f030006;
     }
     public static final class menu {
         public static final int wayd=0x7f080000;

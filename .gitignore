@@ -24,3 +24,6 @@ proguard/
 
 # Mac
 .DS_Store
+
+# Eclipse metadata
+.metadata/

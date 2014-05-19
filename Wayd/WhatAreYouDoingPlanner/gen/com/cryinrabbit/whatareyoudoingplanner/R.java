@@ -32,9 +32,10 @@ public final class R {
     }
     public static final class id {
         public static final int RelativeLayout1=0x7f05000d;
-        public static final int action_settings=0x7f050010;
+        public static final int action_settings=0x7f050013;
         public static final int button1=0x7f050002;
         public static final int calendarView1=0x7f050009;
+        public static final int chooseExisting=0x7f050012;
         public static final int dialog_date_datePicker=0x7f050003;
         public static final int dialog_time_timePicker=0x7f050004;
         public static final int event_date=0x7f050006;
@@ -47,6 +48,8 @@ public final class R {
         public static final int listView1=0x7f05000a;
         public static final int login_button=0x7f05000e;
         public static final int menu_item_new_event=0x7f05000f;
+        public static final int menu_item_new_picture=0x7f050010;
+        public static final int takePicture=0x7f050011;
         public static final int viewPager=0x7f050000;
     }
     public static final class layout {

@@ -28,6 +28,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+
 public class WaydFragment extends ListFragment {
 	
 	private ArrayList<Event> mEvents;
@@ -62,14 +63,14 @@ public class WaydFragment extends ListFragment {
 */
 		
 		// camera drop down menu
-		SubMenu subMenu2 = menu.addSubMenu(R.string.new_picture);
+		/*SubMenu subMenu2 = menu.addSubMenu(R.string.new_picture);
 
 		subMenu2.add(R.string.take_photo);
 		subMenu2.add(R.string.choose_existing);
 
 		MenuItem subMenu2Item = subMenu2.getItem();
 		subMenu2Item.setIcon(R.drawable.ic_action_camera);
-		subMenu2Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+		subMenu2Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);*/
 
 
 		inflater.inflate(R.menu.wayd, menu);		
@@ -80,24 +81,28 @@ public class WaydFragment extends ListFragment {
 	//This method handles the action bar
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch(item.getItemId()) {
-			//Handles + button to add event
-			case R.id.menu_item_new_event:
-			//case R.string.new_event:
-				Event e = new Event();
-				EventList.get(getActivity()).addEvent(e);
-				Intent i = new Intent(getActivity(), EventPagerActivity.class);
-				i.putExtra(EventFragment.EXTRA_EVENT_ID, e.getId());
-				startActivityForResult(i,0);
-				return true;
+		//Handles + button to add event
+		case R.id.menu_item_new_event:
+			Event e = new Event();
+			EventList.get(getActivity()).addEvent(e);
+			Intent i = new Intent(getActivity(), EventPagerActivity.class);
+			i.putExtra(EventFragment.EXTRA_EVENT_ID, e.getId());
+			startActivityForResult(i,0);
+			return true;
+			
+		
+		case R.id.takePicture:
+			return true;
+		case R.id.chooseExisting:
+			 return true;
+			
+			
+			
+		default:
+			return super.onOptionsItemSelected(item);	
+		}
 				
 			
-			case R.string.take_photo:
-				return true;
-			case R.string.choose_existing:
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);	
-		}
 	}
 	
 	//This method takes care of removing events

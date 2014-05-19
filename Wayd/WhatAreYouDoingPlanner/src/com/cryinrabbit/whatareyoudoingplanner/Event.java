@@ -1,5 +1,9 @@
 package com.cryinrabbit.whatareyoudoingplanner;
 
+/*
+ * This class handles all the model for the event
+ */
+
 import java.util.Date;
 import java.util.UUID;
 

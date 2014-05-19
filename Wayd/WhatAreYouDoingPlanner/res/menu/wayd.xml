@@ -3,21 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.cryinrabbit.whatareyoudoingplanner.WaydActivity" >
     
+    
      <item android:id="@+id/menu_item_new_event"
         android:icon="@drawable/ic_action_new"
         android:title="@string/new_event"
         android:showAsAction="ifRoom"/>
     
-    <item android:id="@+id/menu_item_new_picture"
+     <item android:id="@+id/menu_item_new_picture"
         android:icon="@drawable/ic_action_camera"
         android:title="@string/new_picture"
-        android:showAsAction="ifRoom"/>
-    
+        android:showAsAction="ifRoom">
+        
+        <menu >
+            <item android:id="@+id/takePicture" android:title="Take Picture" />
+            <item android:id="@+id/chooseExisting" android:title="Choose Existing" />
+        
+        </menu>
+        </item>
+	 
 	 <item
         android:id="@+id/action_settings"
         android:title="@string/menu_settings"
         android:showAsAction="never"/>
-    
-  
+	 
 
+	 
+	 
 </menu>

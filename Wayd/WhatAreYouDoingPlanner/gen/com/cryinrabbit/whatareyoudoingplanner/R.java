@@ -45,6 +45,7 @@ public final class R {
         public static final int event_time=0x7f050007;
         public static final int event_title=0x7f050005;
         public static final int fragmentContainer=0x7f050001;
+        public static final int help=0x7f050014;
         public static final int listView1=0x7f05000a;
         public static final int login_button=0x7f05000e;
         public static final int menu_item_new_event=0x7f05000f;

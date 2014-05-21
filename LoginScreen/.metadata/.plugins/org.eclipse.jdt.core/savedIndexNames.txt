@@ -1,7 +1,0 @@
-INDEX VERSION 1.126+C:\Users\WayneNB\LoginScreen\.metadata\.plugins\org.eclipse.jdt.core
-2431158381.index
-1625805832.index
-3259359712.index
-1284074322.index
-3360859230.index
-4240929124.index

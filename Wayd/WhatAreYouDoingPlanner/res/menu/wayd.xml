@@ -25,12 +25,12 @@
         android:id="@+id/action_settings"
         android:title="@string/menu_settings"
         android:showAsAction="never">
-	     <menu>
-	         <item android:id="@+id/help" android:title="Help Menu"/>
-	     </menu>
+	     
 	 </item>
-	 
-
-	 
+	 <item 
+	     android:id="@+id/action_help" 
+	     android:title="@string/help_menu" 
+	     android:showAsAction="never">
+	 </item>
 	 
 </menu>

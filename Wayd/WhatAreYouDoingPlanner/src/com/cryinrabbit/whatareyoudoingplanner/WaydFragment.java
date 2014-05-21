@@ -96,8 +96,11 @@ public class WaydFragment extends ListFragment {
 		case R.id.chooseExisting:
 			 return true;
 			
-			
-			
+		case R.id.action_help:	
+			Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage("com.manishkpr.viewpagerimagegallery");
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			//change the content of " " with the package path to the class
 		default:
 			return super.onOptionsItemSelected(item);	
 		}

@@ -14,7 +14,7 @@ public class MySchedule {
 	
 	public MySchedule() {
 		mId = UUID.randomUUID();
-		schedule = "No schedule yet";
+		schedule = "";
 	}
 	
 	public void setSchedule(String s) {

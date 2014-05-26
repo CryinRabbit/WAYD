@@ -6,10 +6,12 @@ package com.cryinrabbit.whatareyoudoingplanner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 import android.app.Activity;
-import android.content.ComponentName;
+import android.content.ClipData;
+import android.content.ClipData.Item;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -19,7 +21,6 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -43,7 +44,6 @@ public class WaydFragment extends ListFragment {
 	private int dayOfMonthSelected; //day of month selected by user
 	private static final String SCHEDULE_INFO_DIALOG="schedule_info";
 	private MySchedule mSchedule;
-	private String schedule;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,25 +53,10 @@ public class WaydFragment extends ListFragment {
 		mEvents = EventList.get(getActivity()).getEvents();
 		mSchedule = new MySchedule();
 		
-		//Added code to handle OCR text
-		Intent intent = getActivity().getIntent();
-		String action = intent.getAction();
-		String type = intent.getType();
-		
-		if(Intent.ACTION_SEND.equals(action) && type != null) {
-			if("text/plain".equals(type)) {
-				handleSendText(intent);
-			}
- 		}
-		
-		///end of added code	
-	}
 	
-	private void handleSendText(Intent intent) {
-		String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
-		if(sharedText != null) {
-			mSchedule.setSchedule(sharedText);
-		}
+		
+		
+		
 	}
 	
 	
@@ -117,10 +102,14 @@ public class WaydFragment extends ListFragment {
 			
 		
 		case R.id.takePicture:
-			Intent intent = getActivity().getPackageManager()
-					.getLaunchIntentForPackage("edu.sfsu.cs.orange.ocr");
 			
-			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			//Intent intent = getActivity().getPackageManager()
+			//.getLaunchIntentForPackage("edu.sfsu.cs.orange.ocr");
+			
+			Intent intent = new Intent();
+			intent.setClassName("edu.sfsu.cs.orange.ocr", "edu.sfsu.cs.orange.ocr.CaptureActivity");
+			
+			//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			
 			//test code
 			//Bundle b = new Bundle();
@@ -129,16 +118,17 @@ public class WaydFragment extends ListFragment {
 			
 					
 			
-			startActivity(intent);
+			startActivityForResult(intent,1);
 			return true;
 		case R.id.chooseExisting:
 			 return true;
 			 
 		case R.id.myschedule:
 			FragmentManager fm = getActivity().getSupportFragmentManager();
-        	EventInfoFragment dialog = new EventInfoFragment("My Schedule", mSchedule.getSchedule());
+			ClipboardManager manager = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+			ScheduleInfoFragment dialog = new ScheduleInfoFragment("My Schedule",manager.getText().toString());
         	dialog.show(fm, SCHEDULE_INFO_DIALOG);
-        	Log.d("msg", " " + schedule);
+			
 			return true;
 			
 			
@@ -148,6 +138,10 @@ public class WaydFragment extends ListFragment {
 		}
 				
 			
+	}
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
 	//This method takes care of removing events

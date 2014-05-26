@@ -730,6 +730,11 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
       return false;
     }
     
+    ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+    clipboardManager.setText(ocrResult.getText());
+    
+    finish();
+
     // Turn off capture-related UI elements
     shutterButton.setVisibility(View.GONE);
     statusViewBottom.setVisibility(View.GONE);

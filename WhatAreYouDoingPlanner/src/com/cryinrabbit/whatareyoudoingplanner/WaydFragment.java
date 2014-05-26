@@ -189,13 +189,31 @@ public class WaydFragment extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		
+		Log.d("msg", "On create view called");
+		
 		View v = inflater.inflate(R.layout.fragment_wayd, parent, false);
 		
 		calendar = (CalendarView)v.findViewById(R.id.calendarView1);
 		
 		///calendar.setShownWeekCount(2);
+		
+		//calendar.getDate();
 	
 		removeEmptyEvents(mEvents);
+		
+		//now display only events from selected day
+		//Listener to handle calendar
+		calendar.setOnDateChangeListener(new OnDateChangeListener() {
+			 public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+				yearSelected = year;
+				monthSelected = month;
+				dayOfMonthSelected = dayOfMonth;
+				  
+				   
+			 }
+		 });
+		
+		
 		
 		EventAdapter adapter = new EventAdapter(mEvents);
 		lv = (ListView)v.findViewById(R.id.listView1);
@@ -217,18 +235,7 @@ public class WaydFragment extends ListFragment {
             }
 
        }); 
-		
-		//Listener to handle calendar
-	   calendar.setOnDateChangeListener(new OnDateChangeListener() {
-		   public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-			  yearSelected = year;
-			  monthSelected = month;
-			  dayOfMonthSelected = dayOfMonth;
-			  
-			   
-		   }
-	   });
-  
+	
 		
 		return v;
 	}

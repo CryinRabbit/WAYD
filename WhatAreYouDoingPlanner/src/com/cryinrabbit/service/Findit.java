@@ -118,8 +118,8 @@ import android.content.Context;
         }
        
         	String pattern3="AM";
-        	Pattern r3 = Pattern.compile(pattern2);
-        	Matcher m3 = r2.matcher(input2);
+        	Pattern r3 = Pattern.compile(pattern3);
+        	Matcher m3 = r3.matcher(input2);
         	if(m3.find()){
         	String a=input2.replace("AM", "");
         	input2=a;
@@ -154,8 +154,8 @@ import android.content.Context;
     }
    
     	String pattern3="AM";
-    	Pattern r3 = Pattern.compile(pattern2);
-    	Matcher m3 = r2.matcher(input);
+    	Pattern r3 = Pattern.compile(pattern3);
+    	Matcher m3 = r3.matcher(input);
     	if(m3.find()){
     	String a=input.replace("AM", "");
     	input=a;

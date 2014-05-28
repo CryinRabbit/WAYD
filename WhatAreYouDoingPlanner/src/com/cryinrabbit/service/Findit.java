@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import android.content.ClipboardManager;
 import android.content.Context;
 
- class Findit {
+ public class Findit {
 	
 	public Findit(){		
 	}
@@ -120,21 +120,8 @@ import android.content.Context;
     return input;
 	}
 }	
-	
-<<<<<<< HEAD:WhatAreYouDoingPlanner/src/com/cryinrabbit/service/Find.java
-public class Find{
-	
-	String x;
-	public Find(String x) {
-		this.x = x;
-		
-	}
-	
-	public String getX() {
-		return x;
-	}
-=======
- 
+
+
  
  
  

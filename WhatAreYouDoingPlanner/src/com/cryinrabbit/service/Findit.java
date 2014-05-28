@@ -118,7 +118,12 @@ import java.util.regex.Pattern;
 	}
 }	
 	
-public class Find{
+ 
+ 
+ 
+ 
+ /*
+public class Findit{
 	public static void main(String[] args){
 		String x="jhkjMoWe x2:00PM-4:00PM jlkjuop ljlk;j                                        ;;jlk ljklj;l ;l jklj kjkl MoWeFr 2:00PM-4:00PM jlkjuop ljlk;j ";
 		Findit f=new Findit();
@@ -135,8 +140,11 @@ public class Find{
 			String allWeekday="";
 			for(int j=0;j<5;j++){
 				allWeekday+=schedule[i].charAt(j);
+				//System.out.println(allWeekday);
+				//System.out.println(classTime);
+				//System.out.println(schedule[i]);
 			}
-			//System.out.println(allWeekday);
+			
 			String classTime=f.findTime(schedule[i]);
 			if(f.findMo(schedule[i])){
 				String event="Mo";
@@ -197,9 +205,9 @@ public class Find{
 				System.out.println(endTime);
 				
 			}
-			//System.out.println(classTime);
-			//System.out.println(schedule[i]);
+			
 			
 		}
 	}
 }
+*/

@@ -103,6 +103,28 @@ import android.content.Context;
         for(int i=0; i<input.length()-1;i++){
         	input2+=input.charAt(i);
         }
+        String pattern2="PM";
+        Pattern r2 = Pattern.compile(pattern2);
+        Matcher m2 = r2.matcher(input2);
+        if(m2.find()){
+        	String a=input2.replace("PM", "");
+        	int b=Integer.parseInt(a.charAt(0)+"");
+        	b=b+12;
+        	String c=b+"";
+        	for(int j=1;j<a.length();j++){
+        		c=c+a.charAt(j);
+        	}
+        	input2=c;
+        }
+       
+        	String pattern3="AM";
+        	Pattern r3 = Pattern.compile(pattern2);
+        	Matcher m3 = r2.matcher(input2);
+        	if(m3.find()){
+        	String a=input2.replace("AM", "");
+        	input2=a;
+        }
+        
         return input2;
 	}
 
@@ -116,7 +138,29 @@ import android.content.Context;
     while(m.find()){
     	input=m.group();
     }
-
+    
+    String pattern2="PM";
+    Pattern r2 = Pattern.compile(pattern2);
+    Matcher m2 = r2.matcher(input);
+    if(m2.find()){
+    	String a=input.replace("PM", "");
+    	int b=Integer.parseInt(a.charAt(0)+"");
+    	b=b+12;
+    	String c=b+"";
+    	for(int j=1;j<a.length();j++){
+    		c=c+a.charAt(j);
+    	}
+    	input=c;
+    }
+   
+    	String pattern3="AM";
+    	Pattern r3 = Pattern.compile(pattern2);
+    	Matcher m3 = r2.matcher(input);
+    	if(m3.find()){
+    	String a=input.replace("AM", "");
+    	input=a;
+    }
+    
     return input;
 	}
 }	

@@ -6,7 +6,6 @@ package com.cryinrabbit.whatareyoudoingplanner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -17,7 +16,6 @@ import android.app.Dialog;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
@@ -27,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -52,18 +51,16 @@ public class WaydFragment extends ListFragment {
 	private int yearSelected; //year selected by user
 	private int monthSelected; //month selected by user
 	private int dayOfMonthSelected; //day of month selected by user
-	private static final String SCHEDULE_INFO_DIALOG="schedule_info";
-	private MySchedule mSchedule;
-    private static Date date = new Date();
-    private int classNumber = 1;
-    private static boolean listAlreadyfilled = false;
-    private static boolean pictureTaken = false;
+	
+	// help overlay
+	Context ctx;
 	
 	// help overlay
 	Context ctx;
     
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
 		
 		// help points to this
@@ -92,7 +89,10 @@ public class WaydFragment extends ListFragment {
 			dialog.show();
 		}*/
 	
-	
+		
+	}*/
+
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
@@ -135,26 +135,10 @@ public class WaydFragment extends ListFragment {
 			
 		
 		case R.id.takePicture:
-			
-			//Intent intent = getActivity().getPackageManager()
-			//.getLaunchIntentForPackage("edu.sfsu.cs.orange.ocr");
-			
-			Intent intent = new Intent();
-			intent.setClassName("edu.sfsu.cs.orange.ocr", "edu.sfsu.cs.orange.ocr.CaptureActivity");
-			
-			//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			
-			//test code
-			//Bundle b = new Bundle();
-			//b.putString("testString", "HelloWorld");
-			//intent.putExtra("MySchedule", b);
-			
-			pictureTaken = true;	
-			
-			startActivityForResult(intent,1);
 			return true;
 		case R.id.chooseExisting:
 			 return true;
+
 			 
 		case R.id.myschedule:
 			FragmentManager fm = getActivity().getSupportFragmentManager();
@@ -361,16 +345,11 @@ public class WaydFragment extends ListFragment {
 			return true;
 			
 			
-			
 		default:
 			return super.onOptionsItemSelected(item);	
 		}
 				
 			
-	}
-	
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
 	//This method takes care of removing events
@@ -385,21 +364,13 @@ public class WaydFragment extends ListFragment {
 	
 	//This method will take care of updating list of events
 	//according to the day user chooses in the calendar
-	private ArrayList<Event> filterEvents(ArrayList<Event> e, Date d) {
-		ArrayList<Event> temp = new ArrayList<Event>();
-		for(Event ev : e) {
-			//temp.add((Event) ev.clone());
-		}
+	private ArrayList<Event> eventsFromSpecifiedCalendar(ArrayList<Event> e) {
+		ArrayList<Event> temp = (ArrayList<Event>) e.clone();
 		
 		for(int i = 0; i < temp.size(); i++) {
 			//check if date of the Events list matches date from the
 			//date specified in the calendar
-			if(temp.get(i).getStartDate().getTime() != d.getTime()) {
-				Log.d("mEvent item", temp.get(i).getStartDate().getTime()+"");
-				Log.d("date item", d.getTime()+"");
-				Log.d("msg", "removed Events, not that date");
-				temp.remove(i);
-			}
+			
 			
 		}
 		
@@ -424,56 +395,21 @@ public class WaydFragment extends ListFragment {
 	
 	
 	@SuppressLint("NewApi") @Override
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-			
 		
 		View v = inflater.inflate(R.layout.fragment_wayd, parent, false);
 		
 		calendar = (CalendarView)v.findViewById(R.id.calendarView1);
 		
-		calendar.setDate(date.getTime());
-		
-		calendar.setBackgroundColor(Color.WHITE);
-		calendar.setFocusedMonthDateColor(Color.BLUE);
-
-		
 		///calendar.setShownWeekCount(2);
-		
-		//calendar.getDate();
 	
 		removeEmptyEvents(mEvents);
 		
 		EventAdapter adapter = new EventAdapter(mEvents);
 		lv = (ListView)v.findViewById(R.id.listView1);
 		lv.setAdapter(adapter);
-		((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-		lv.setBackgroundColor(Color.WHITE);
-				
-		final Calendar cal = Calendar.getInstance();
 		
-		//now display only events from selected day
-		//Listener to handle calendar
-		calendar.setOnDateChangeListener(new OnDateChangeListener() {
-			 public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-				
-				cal.set(year, month, dayOfMonth);
-				date = cal.getTime();
-				
-				
-				//Log.d("msg", cal.getTime().toString());
-				//lv.setAdapter(new EventAdapter(filterEvents(mEvents, date)));
-				
-				//((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-				
-				//should refresh the list view
-				
-				
-				
-				
-			 }
-		 });
-		
-	
 	
 		//Comment
 		//Listener Handle the list view	   
@@ -491,7 +427,7 @@ public class WaydFragment extends ListFragment {
 
        }); 
 		
-		
+	
 		
 // chi
 
@@ -724,6 +660,8 @@ public class WaydFragment extends ListFragment {
 		
 		}
 	
+		
+		
 		
 		
 	}

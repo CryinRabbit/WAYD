@@ -121,6 +121,7 @@ import android.content.Context;
 	}
 }	
 	
+<<<<<<< HEAD:WhatAreYouDoingPlanner/src/com/cryinrabbit/service/Find.java
 public class Find{
 	
 	String x;
@@ -132,6 +133,14 @@ public class Find{
 	public String getX() {
 		return x;
 	}
+=======
+ 
+ 
+ 
+ 
+ /*
+public class Findit{
+>>>>>>> e1ba56d19cf38e43eb6711beb864188e5a553c9c:WhatAreYouDoingPlanner/src/com/cryinrabbit/service/Findit.java
 	public static void main(String[] args){
 		String x="jhkjMoWe x2:00PM-4:00PM jlkjuop ljlk;j                                        ;;jlk ljklj;l ;l jklj kjkl MoWeFr 2:00PM-4:00PM jlkjuop ljlk;j ";
 		
@@ -149,8 +158,11 @@ public class Find{
 			String allWeekday="";
 			for(int j=0;j<5;j++){
 				allWeekday+=schedule[i].charAt(j);
+				//System.out.println(allWeekday);
+				//System.out.println(classTime);
+				//System.out.println(schedule[i]);
 			}
-			//System.out.println(allWeekday);
+			
 			String classTime=f.findTime(schedule[i]);
 			if(f.findMo(schedule[i])){
 				String event="Mo";
@@ -211,9 +223,9 @@ public class Find{
 				System.out.println(endTime);
 				
 			}
-			//System.out.println(classTime);
-			//System.out.println(schedule[i]);
+			
 			
 		}
 	}
 }
+*/

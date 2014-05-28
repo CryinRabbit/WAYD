@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -20,14 +18,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -44,48 +40,16 @@ public class WaydFragment extends ListFragment {
 	private int monthSelected; //month selected by user
 	private int dayOfMonthSelected; //day of month selected by user
 	
-	// help overlay
-	Context ctx;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		
 		super.onCreate(savedInstanceState);
-		// help points to this
-		//ctx = this.getActivity();
 		setHasOptionsMenu(true);
 		
 		mEvents = EventList.get(getActivity()).getEvents();
-		//showOverLay();
 			
 	}
 	
-	// help overlay method
-	/*
-	private void showOverLay() {
-		final Dialog dialog = new Dialog(ctx, android.R.style.Theme_Translucent_NoTitleBar);
-
-		dialog.setContentView(R.layout.overlay_help);
-
-		LinearLayout layout = (LinearLayout) dialog.findViewById(R.id.overlayLayout);
-
-		layout.setOnClickListener(new OnClickListener() {
-
-			@Override
-
-			public void onClick(View arg0) {
-
-				dialog.dismiss();
-
-			}
-
-		});
-
-		dialog.show();
-		
-	}*/
-
-
+	
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
@@ -260,8 +224,6 @@ public class WaydFragment extends ListFragment {
 		
 		}
 	
-		
-		
 		
 		
 	}

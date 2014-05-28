@@ -6,34 +6,30 @@ package com.cryinrabbit.whatareyoudoingplanner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
 
-import android.content.ClipboardManager;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.cryinrabbit.service.Findit;
 
 
 
@@ -47,24 +43,49 @@ public class WaydFragment extends ListFragment {
 	private int yearSelected; //year selected by user
 	private int monthSelected; //month selected by user
 	private int dayOfMonthSelected; //day of month selected by user
-	private static final String SCHEDULE_INFO_DIALOG="schedule_info";
-	private MySchedule mSchedule;
-    private static Date date = new Date();
-    private int classNumber = 1;
-    private static boolean listAlreadyfilled = false;
-    private static boolean pictureTaken = false;
+	
+	// help overlay
+	Context ctx;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
+		// help points to this
+		//ctx = this.getActivity();
 		setHasOptionsMenu(true);
 		
 		mEvents = EventList.get(getActivity()).getEvents();
-		mSchedule = new MySchedule();
-		
+		//showOverLay();
+			
 	}
 	
-	
+	// help overlay method
+	/*
+	private void showOverLay() {
+		final Dialog dialog = new Dialog(ctx, android.R.style.Theme_Translucent_NoTitleBar);
+
+		dialog.setContentView(R.layout.overlay_help);
+
+		LinearLayout layout = (LinearLayout) dialog.findViewById(R.id.overlayLayout);
+
+		layout.setOnClickListener(new OnClickListener() {
+
+			@Override
+
+			public void onClick(View arg0) {
+
+				dialog.dismiss();
+
+			}
+
+		});
+
+		dialog.show();
+		
+	}*/
+
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
@@ -107,229 +128,20 @@ public class WaydFragment extends ListFragment {
 			
 		
 		case R.id.takePicture:
-			
-			//Intent intent = getActivity().getPackageManager()
-			//.getLaunchIntentForPackage("edu.sfsu.cs.orange.ocr");
-			
-			Intent intent = new Intent();
-			intent.setClassName("edu.sfsu.cs.orange.ocr", "edu.sfsu.cs.orange.ocr.CaptureActivity");
-			
-			//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			
-			//test code
-			//Bundle b = new Bundle();
-			//b.putString("testString", "HelloWorld");
-			//intent.putExtra("MySchedule", b);
-			
-			pictureTaken = true;	
-			
-			startActivityForResult(intent,1);
 			return true;
 		case R.id.chooseExisting:
 			 return true;
-			 
-		case R.id.myschedule:
-			FragmentManager fm = getActivity().getSupportFragmentManager();
-			ClipboardManager manager = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-			//String x = manager.getText().toString();
-			String x = manager.getText().toString();
 			
-		 if(pictureTaken) {
-			Log.d("msg", "getting schedule info");
-			//manager.setText("");
-			Findit f=new Findit();
-			HashSet<String> a=f.findWeek(x);
-			int count=0;
-			String[] schedule=new String[a.size()];
-			Iterator iter = a.iterator();
-			while (iter.hasNext()) {
-				schedule[count++]=(String)iter.next();
-			}
-				
-			 for(int ii=0;ii<schedule.length;ii++){
-				if(f.findMo(schedule[ii])){
-					Event iii = new Event();
-						
-					String event="Mo";
-					String startTime=f.findStartTime(schedule[ii]);
-						
-					String endTime=f.findEndTime(schedule[ii]);
-					System.out.print(event+"\t");
-						
-					Calendar cal = Calendar.getInstance();
-					cal.set(2014, 5, 27, (int)startTime.charAt(0), 0);
-						
-						
-						
-					iii.setTime(cal.getTime());
-					iii.setTitle("Class " + (classNumber++));
-						
-						
-					mEvents.add(iii);
-						
-						
-						
-					System.out.print(startTime+"\t");
-						
-						
-					System.out.println(endTime);
-					((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-				}
-					
-				if(f.findTu(schedule[ii])){
-					String event="Tu";
-					String startTime=f.findStartTime(schedule[ii]);
-					String endTime=f.findEndTime(schedule[ii]);
-					System.out.print(event+"\t");
-						
-					Event iii = new Event();
-						
-					Calendar cal = Calendar.getInstance();
-						cal.set(2014, 5, 27, (int)startTime.charAt(0), 0);
-						
-						
-						
-						iii.setTime(cal.getTime());
-						iii.setTitle("Class " + (classNumber++));
-						
-						
-						mEvents.add(iii);
-							
-						
-						
-						
-						
-						System.out.print(startTime+"\t");
-						System.out.println(endTime);
-						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-					}
-					
-					/*if(f.findWe(schedule[ii])){
-						String event="We";
-						String startTime=f.findStartTime(schedule[ii]);
-						
-							
-						Event iii = new Event();
-						Calendar cal = Calendar.getInstance();
-						cal.set(2014, 5, 27, (int)startTime.charAt(0), 0);
-						
-						
-						
-						iii.setTime(cal.getTime());
-						iii.setTitle("Class");
-						
-				
-						mEvents.add(iii);
-						
-						
-						
-						
-						
-						
-						
-						String endTime=f.findEndTime(schedule[ii]);
-						System.out.print(event+"\t");
-						System.out.print(startTime+"\t");
-						System.out.println(endTime);
-						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-					}*/
-					
-					/*if(f.findTh(schedule[ii])){
-						String event="Th";
-						String startTime=f.findStartTime(schedule[ii]);
-						
-
-						Event iii = new Event();
-						Calendar cal = Calendar.getInstance();
-						cal.set(2014, 5, 27, (int)startTime.charAt(0), 0);
-						
-						
-						
-						iii.setTime(cal.getTime());
-						iii.setTitle("Class");
-						
-						//Check if event already has that time
-						
-						mEvents.add(iii);
-						
-						
-						
-						String endTime=f.findEndTime(schedule[ii]);
-						System.out.print(event+"\t");
-						System.out.print(startTime+"\t");
-						System.out.println(endTime);
-						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-					}*/
-					
-					if(f.findFr(schedule[ii])){
-						String event="Fr";
-						String startTime=f.findStartTime(schedule[ii]);
-						
-						Event iii = new Event();
-						Calendar cal = Calendar.getInstance();
-						cal.set(2014, 5, 27, (int)startTime.charAt(0), 0);
-						
-						
-						
-						iii.setTime(cal.getTime());
-						iii.setTitle("Class");
-						
-						//Check if event already has that time
-						for(int j = 0; j < mEvents.size(); j++) {
-							if(mEvents.get(j).getTime().equals(cal.getTime())) {
-								break;
-							}
-						}
-						mEvents.add(iii);
-						
-						
-						
-						
-						
-						
-						String endTime=f.findEndTime(schedule[ii]);
-						System.out.print(event+"\t");
-						System.out.print(startTime+"\t");
-						System.out.println(endTime);
-						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-					}
-					
-					if(f.findSa(schedule[ii])){
-						String event="Sa";
-						String startTime=f.findStartTime(schedule[ii]);
-						String endTime=f.findEndTime(schedule[ii]);
-						System.out.print(event+"\t");
-						System.out.print(startTime+"\t");
-						System.out.println(endTime);
-						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-					}
-					
-					
-				}
-			 
-			 pictureTaken = false;
-			}
-			
-			
-			
-			ScheduleInfoFragment dialog = new ScheduleInfoFragment("My Schedule",manager.getText().toString());
-			//manager.setText("");
-        	dialog.show(fm, SCHEDULE_INFO_DIALOG);
-        	
-			
-			return true;
-			
-			
-			
+		case R.id.action_help:	
+			Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage("com.manishkpr.viewpagerimagegallery");
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			//change the content of " " with the package path to the class
 		default:
 			return super.onOptionsItemSelected(item);	
 		}
 				
 			
-	}
-	
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
 	//This method takes care of removing events
@@ -344,95 +156,34 @@ public class WaydFragment extends ListFragment {
 	
 	//This method will take care of updating list of events
 	//according to the day user chooses in the calendar
-	private ArrayList<Event> filterEvents(ArrayList<Event> e, Date d) {
-		ArrayList<Event> temp = new ArrayList<Event>();
-		for(Event ev : e) {
-			//temp.add((Event) ev.clone());
-		}
+	private ArrayList<Event> eventsFromSpecifiedCalendar(ArrayList<Event> e) {
+		ArrayList<Event> temp = (ArrayList<Event>) e.clone();
 		
 		for(int i = 0; i < temp.size(); i++) {
 			//check if date of the Events list matches date from the
 			//date specified in the calendar
-			if(temp.get(i).getStartDate().getTime() != d.getTime()) {
-				Log.d("mEvent item", temp.get(i).getStartDate().getTime()+"");
-				Log.d("date item", d.getTime()+"");
-				Log.d("msg", "removed Events, not that date");
-				temp.remove(i);
-			}
+			
 			
 		}
 		
 		return temp;
 	}
 	
-	//Test code
-	/*public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Log.d("msg", "called");
-		if(requestCode == 1) {
-			if(resultCode == Activity.RESULT_OK) {
-				Log.d("msg", "called");
-				mSchedule.setSchedule(data.getExtras().getString("MySchedule"));
-			}
-		}
-
-	        
-	}*/
-	
-	
-	
-	
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-			
 		
 		View v = inflater.inflate(R.layout.fragment_wayd, parent, false);
 		
 		calendar = (CalendarView)v.findViewById(R.id.calendarView1);
 		
-		calendar.setDate(date.getTime());
-		
-		calendar.setBackgroundColor(Color.WHITE);
-		calendar.setFocusedMonthDateColor(Color.BLUE);
-
-		
 		///calendar.setShownWeekCount(2);
-		
-		//calendar.getDate();
 	
 		removeEmptyEvents(mEvents);
 		
 		EventAdapter adapter = new EventAdapter(mEvents);
 		lv = (ListView)v.findViewById(R.id.listView1);
 		lv.setAdapter(adapter);
-		((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-		lv.setBackgroundColor(Color.WHITE);
-				
-		final Calendar cal = Calendar.getInstance();
 		
-		//now display only events from selected day
-		//Listener to handle calendar
-		calendar.setOnDateChangeListener(new OnDateChangeListener() {
-			 public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-				
-				cal.set(year, month, dayOfMonth);
-				date = cal.getTime();
-				
-				
-				//Log.d("msg", cal.getTime().toString());
-				//lv.setAdapter(new EventAdapter(filterEvents(mEvents, date)));
-				
-				//((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-				
-				//should refresh the list view
-				
-				
-				
-				
-			 }
-		 });
-		
-	
 	
 		//Comment
 		//Listener Handle the list view	   
@@ -449,7 +200,18 @@ public class WaydFragment extends ListFragment {
             }
 
        }); 
-	
+		
+		//Listener to handle calendar
+	   calendar.setOnDateChangeListener(new OnDateChangeListener() {
+		   public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+			  yearSelected = year;
+			  monthSelected = month;
+			  dayOfMonthSelected = dayOfMonth;
+			  
+			   
+		   }
+	   });
+  
 		
 		return v;
 	}
@@ -490,7 +252,7 @@ public class WaydFragment extends ListFragment {
 			else
 				t = cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE);
 			
-			timeTextView.setText(t+" PM");
+			timeTextView.setText(t);
 			
 			
 			
@@ -498,6 +260,8 @@ public class WaydFragment extends ListFragment {
 		
 		}
 	
+		
+		
 		
 		
 	}

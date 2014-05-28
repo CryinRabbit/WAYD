@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.cryinrabbit.service.Find;
+
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +31,7 @@ import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.ListView;
 import android.widget.TextView;
+
 
 
 public class WaydFragment extends ListFragment {
@@ -124,6 +127,11 @@ public class WaydFragment extends ListFragment {
 		case R.id.myschedule:
 			FragmentManager fm = getActivity().getSupportFragmentManager();
 			ClipboardManager manager = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+			Event event = new Event();
+			event.setTitle("hello world");
+			mEvents.add(event);
+			((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+			
 			ScheduleInfoFragment dialog = new ScheduleInfoFragment("My Schedule",manager.getText().toString());
         	dialog.show(fm, SCHEDULE_INFO_DIALOG);
 			

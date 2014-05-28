@@ -5,6 +5,9 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.content.ClipboardManager;
+import android.content.Context;
+
  class Findit {
 	
 	public Findit(){		
@@ -119,8 +122,19 @@ import java.util.regex.Pattern;
 }	
 	
 public class Find{
+	
+	String x;
+	public Find(String x) {
+		this.x = x;
+		
+	}
+	
+	public String getX() {
+		return x;
+	}
 	public static void main(String[] args){
 		String x="jhkjMoWe x2:00PM-4:00PM jlkjuop ljlk;j                                        ;;jlk ljklj;l ;l jklj kjkl MoWeFr 2:00PM-4:00PM jlkjuop ljlk;j ";
+		
 		Findit f=new Findit();
 		HashSet<String> a=f.findWeek(x);
 		int count=0;

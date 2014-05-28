@@ -6,30 +6,31 @@ package com.cryinrabbit.whatareyoudoingplanner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
-import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipData.Item;
-import android.content.ClipboardManager;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
 
 
 public class WaydFragment extends ListFragment {
@@ -42,24 +43,49 @@ public class WaydFragment extends ListFragment {
 	private int yearSelected; //year selected by user
 	private int monthSelected; //month selected by user
 	private int dayOfMonthSelected; //day of month selected by user
-	private static final String SCHEDULE_INFO_DIALOG="schedule_info";
-	private MySchedule mSchedule;
+	
+	// help overlay
+	Context ctx;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		
 		super.onCreate(savedInstanceState);
+		// help points to this
+		//ctx = this.getActivity();
 		setHasOptionsMenu(true);
 		
 		mEvents = EventList.get(getActivity()).getEvents();
-		mSchedule = new MySchedule();
-		
-	
-		
-		
-		
+		//showOverLay();
+			
 	}
 	
-	
+	// help overlay method
+	/*
+	private void showOverLay() {
+		final Dialog dialog = new Dialog(ctx, android.R.style.Theme_Translucent_NoTitleBar);
+
+		dialog.setContentView(R.layout.overlay_help);
+
+		LinearLayout layout = (LinearLayout) dialog.findViewById(R.id.overlayLayout);
+
+		layout.setOnClickListener(new OnClickListener() {
+
+			@Override
+
+			public void onClick(View arg0) {
+
+				dialog.dismiss();
+
+			}
+
+		});
+
+		dialog.show();
+		
+	}*/
+
+
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
@@ -102,46 +128,20 @@ public class WaydFragment extends ListFragment {
 			
 		
 		case R.id.takePicture:
-			
-			//Intent intent = getActivity().getPackageManager()
-			//.getLaunchIntentForPackage("edu.sfsu.cs.orange.ocr");
-			
-			Intent intent = new Intent();
-			intent.setClassName("edu.sfsu.cs.orange.ocr", "edu.sfsu.cs.orange.ocr.CaptureActivity");
-			
-			//intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			
-			//test code
-			//Bundle b = new Bundle();
-			//b.putString("testString", "HelloWorld");
-			//intent.putExtra("MySchedule", b);
-			
-					
-			
-			startActivityForResult(intent,1);
 			return true;
 		case R.id.chooseExisting:
 			 return true;
-			 
-		case R.id.myschedule:
-			FragmentManager fm = getActivity().getSupportFragmentManager();
-			ClipboardManager manager = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
-			ScheduleInfoFragment dialog = new ScheduleInfoFragment("My Schedule",manager.getText().toString());
-        	dialog.show(fm, SCHEDULE_INFO_DIALOG);
 			
-			return true;
-			
-			
-			
+		case R.id.action_help:	
+			Intent intent = getActivity().getPackageManager().getLaunchIntentForPackage("com.manishkpr.viewpagerimagegallery");
+			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
+			//change the content of " " with the package path to the class
 		default:
 			return super.onOptionsItemSelected(item);	
 		}
 				
 			
-	}
-	
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
 	//This method takes care of removing events
@@ -169,51 +169,16 @@ public class WaydFragment extends ListFragment {
 		return temp;
 	}
 	
-	//Test code
-	/*public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		Log.d("msg", "called");
-		if(requestCode == 1) {
-			if(resultCode == Activity.RESULT_OK) {
-				Log.d("msg", "called");
-				mSchedule.setSchedule(data.getExtras().getString("MySchedule"));
-			}
-		}
-
-	        
-	}*/
-	
-	
-	
-	
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-		
-		Log.d("msg", "On create view called");
 		
 		View v = inflater.inflate(R.layout.fragment_wayd, parent, false);
 		
 		calendar = (CalendarView)v.findViewById(R.id.calendarView1);
 		
 		///calendar.setShownWeekCount(2);
-		
-		//calendar.getDate();
 	
 		removeEmptyEvents(mEvents);
-		
-		//now display only events from selected day
-		//Listener to handle calendar
-		calendar.setOnDateChangeListener(new OnDateChangeListener() {
-			 public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-				yearSelected = year;
-				monthSelected = month;
-				dayOfMonthSelected = dayOfMonth;
-				  
-				   
-			 }
-		 });
-		
-		
 		
 		EventAdapter adapter = new EventAdapter(mEvents);
 		lv = (ListView)v.findViewById(R.id.listView1);
@@ -235,7 +200,18 @@ public class WaydFragment extends ListFragment {
             }
 
        }); 
-	
+		
+		//Listener to handle calendar
+	   calendar.setOnDateChangeListener(new OnDateChangeListener() {
+		   public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+			  yearSelected = year;
+			  monthSelected = month;
+			  dayOfMonthSelected = dayOfMonth;
+			  
+			   
+		   }
+	   });
+  
 		
 		return v;
 	}
@@ -284,6 +260,8 @@ public class WaydFragment extends ListFragment {
 		
 		}
 	
+		
+		
 		
 		
 	}

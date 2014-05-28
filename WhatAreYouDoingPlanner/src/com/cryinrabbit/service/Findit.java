@@ -5,7 +5,10 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
- class Findit {
+import android.content.ClipboardManager;
+import android.content.Context;
+
+ public class Findit {
 	
 	public Findit(){		
 	}
@@ -161,15 +164,17 @@ import java.util.regex.Pattern;
     return input;
 	}
 }	
-	
- 
+
+
  
  
  
  /*
 public class Findit{
+>>>>>>> e1ba56d19cf38e43eb6711beb864188e5a553c9c:WhatAreYouDoingPlanner/src/com/cryinrabbit/service/Findit.java
 	public static void main(String[] args){
 		String x="jhkjMoWe x2:00PM-4:00PM jlkjuop ljlk;j                                        ;;jlk ljklj;l ;l jklj kjkl MoWeFr 2:00PM-4:00PM jlkjuop ljlk;j ";
+		
 		Findit f=new Findit();
 		HashSet<String> a=f.findWeek(x);
 		int count=0;

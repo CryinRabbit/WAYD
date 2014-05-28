@@ -6,13 +6,12 @@ package com.cryinrabbit.whatareyoudoingplanner;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
-import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipData.Item;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.ListFragment;
@@ -44,6 +43,7 @@ public class WaydFragment extends ListFragment {
 	private int dayOfMonthSelected; //day of month selected by user
 	private static final String SCHEDULE_INFO_DIALOG="schedule_info";
 	private MySchedule mSchedule;
+    private static Date date = new Date();
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,9 +52,7 @@ public class WaydFragment extends ListFragment {
 		
 		mEvents = EventList.get(getActivity()).getEvents();
 		mSchedule = new MySchedule();
-		
-	
-		
+
 		
 		
 	}
@@ -156,13 +154,18 @@ public class WaydFragment extends ListFragment {
 	
 	//This method will take care of updating list of events
 	//according to the day user chooses in the calendar
-	private ArrayList<Event> eventsFromSpecifiedCalendar(ArrayList<Event> e) {
+	private ArrayList<Event> filterEvents(ArrayList<Event> e, Date d) {
 		ArrayList<Event> temp = (ArrayList<Event>) e.clone();
 		
 		for(int i = 0; i < temp.size(); i++) {
 			//check if date of the Events list matches date from the
 			//date specified in the calendar
-			
+			if(temp.get(i).getStartDate().getTime() != d.getTime()) {
+				Log.d("mEvent item", temp.get(i).getStartDate().getTime()+"");
+				Log.d("date item", d.getTime()+"");
+				Log.d("msg", "removed Events, not that date");
+				temp.remove(i);
+			}
 			
 		}
 		
@@ -189,11 +192,16 @@ public class WaydFragment extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		
-		Log.d("msg", "On create view called");
 		
 		View v = inflater.inflate(R.layout.fragment_wayd, parent, false);
 		
 		calendar = (CalendarView)v.findViewById(R.id.calendarView1);
+		
+		calendar.setDate(date.getTime());
+		
+		calendar.setBackgroundColor(Color.WHITE);
+		calendar.setFocusedMonthDateColor(Color.BLUE);
+
 		
 		///calendar.setShownWeekCount(2);
 		
@@ -201,24 +209,33 @@ public class WaydFragment extends ListFragment {
 	
 		removeEmptyEvents(mEvents);
 		
+		EventAdapter adapter = new EventAdapter(mEvents);
+		lv = (ListView)v.findViewById(R.id.listView1);
+		lv.setAdapter(adapter);
+		lv.setBackgroundColor(Color.WHITE);
+				
+		final Calendar cal = Calendar.getInstance();
+		
 		//now display only events from selected day
 		//Listener to handle calendar
 		calendar.setOnDateChangeListener(new OnDateChangeListener() {
 			 public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-				yearSelected = year;
-				monthSelected = month;
-				dayOfMonthSelected = dayOfMonth;
-				  
-				   
+				
+				cal.set(year, month, dayOfMonth);
+				date = cal.getTime();
+				
+				
+				//Log.d("msg", cal.getTime().toString());
+				//lv.setAdapter(new EventAdapter(filterEvents(mEvents, date)));
+				
+				//((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+				
+				//should refresh the list view
+				
 			 }
 		 });
 		
-		
-		
-		EventAdapter adapter = new EventAdapter(mEvents);
-		lv = (ListView)v.findViewById(R.id.listView1);
-		lv.setAdapter(adapter);
-		
+	
 	
 		//Comment
 		//Listener Handle the list view	   

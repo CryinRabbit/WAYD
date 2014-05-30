@@ -15,9 +15,9 @@
         android:showAsAction="ifRoom">
         
         <menu >
-            <item android:id="@+id/takePicture" android:title="Take Picture" />
-            <item android:id="@+id/chooseExisting" android:title="Choose Existing" />
-        
+            <item android:id="@+id/takePicture" android:title="@string/take_photo" />
+            <item android:id="@+id/chooseExisting" android:title="@string/choose_existing" />
+        	<item android:id="@+id/myschedule" android:title="@string/my_schedule"/>
         </menu>
         </item>
 	 

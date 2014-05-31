@@ -9,5 +9,6 @@
     	android:id="@+id/imageView1"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:src="@drawable/overlay" />
+    	android:src="@drawable/overlay"
+    	android:background="@drawable/blur_blackbg" />
 </LinearLayout>

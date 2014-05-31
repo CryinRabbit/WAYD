@@ -10,7 +10,9 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -24,16 +26,20 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.cryinrabbit.service.Findit;
 
+import android.content.SharedPreferences;
 
 
 @SuppressLint("NewApi")
@@ -53,7 +59,11 @@ public class WaydFragment extends ListFragment {
     private int classNumber = 1;
     private static boolean listAlreadyfilled = false;
     private static boolean pictureTaken = false;
-
+    // ** help page overlay initialize
+    private static final String PREFS_NAME = "MyPrefsFile";
+    Context ctx;
+    // ** end help initialize
+    
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -62,7 +72,38 @@ public class WaydFragment extends ListFragment {
 		mEvents = EventList.get(getActivity()).getEvents();
 		mSchedule = new MySchedule();
 
+		// **help page overlay: Restore preferences
+		SharedPreferences settings = this.getActivity().getSharedPreferences(PREFS_NAME, 0);
+		boolean dialogShown = settings.getBoolean("dialogShown", false);
+
+		// help points to this class
+		ctx = this.getActivity();
+		setHasOptionsMenu(true);
+				
+		// if first time showing the dialog
+		if (!dialogShown) {
+			showOverLay();
+			SharedPreferences.Editor editor = settings.edit();
+			editor.putBoolean("dialogShown", true);
+			editor.commit();
+		}
+		// ** end help page overlay
 	}
+	
+	// help overlay method
+		private void showOverLay() {
+			final Dialog dialog = new Dialog(ctx, android.R.style.Theme_Translucent_NoTitleBar);
+			dialog.setContentView(R.layout.overlay_help);
+			LinearLayout layout = (LinearLayout) dialog.findViewById(R.id.overlayLayout);
+
+			layout.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					dialog.dismiss();
+				}
+			});
+			dialog.show();
+		}
 
 
 	@Override
@@ -147,9 +188,6 @@ public class WaydFragment extends ListFragment {
 			}
 
 			 for(int ii=0;ii<schedule.length;ii++){
-				
-				String title=f.getTitle(schedule[ii]);
-				
 				if(f.findMo(schedule[ii])){
 					Event iii = new Event();
 

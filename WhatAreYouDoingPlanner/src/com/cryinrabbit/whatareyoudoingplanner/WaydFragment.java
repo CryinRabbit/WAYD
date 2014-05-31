@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
-
+import android.annotation.SuppressLint;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -32,11 +32,11 @@ import android.widget.CalendarView;
 import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.cryinrabbit.service.Findit;
 
 
 
+@SuppressLint("NewApi")
 public class WaydFragment extends ListFragment {
 
 	private ArrayList<Event> mEvents;
@@ -395,7 +395,7 @@ public class WaydFragment extends ListFragment {
 
 		calendar.setDate(date.getTime());
 
-		calendar.setBackgroundColor(Color.WHITE);
+		//calendar.setBackgroundColor(Color.WHITE);
 		calendar.setFocusedMonthDateColor(Color.BLUE);
 
 
@@ -409,7 +409,7 @@ public class WaydFragment extends ListFragment {
 		lv = (ListView)v.findViewById(R.id.listView1);
 		lv.setAdapter(adapter);
 		((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-		lv.setBackgroundColor(Color.WHITE);
+		//lv.setBackgroundColor(Color.WHITE);
 
 		final Calendar cal = Calendar.getInstance();
 

@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.cryinrabbit.whatareyoudoingplanner.WaydActivity" >
+    
+    
+     <item android:id="@+id/menu_item_new_event"
+        android:icon="@drawable/ic_action_new"
+        android:title="@string/new_event"
+        android:showAsAction="ifRoom"/>
+    
+     <item android:id="@+id/menu_item_new_picture"
+        android:icon="@drawable/ic_action_camera"
+        android:title="@string/new_picture"
+        android:showAsAction="ifRoom">
+        
+        <menu >
+            <item android:id="@+id/takePicture" android:title="@string/take_photo" />
+            <item android:id="@+id/chooseExisting" android:title="@string/choose_existing" />
+        	<item android:id="@+id/myschedule" android:title="@string/my_schedule"/>
+        </menu>
+        </item>
+	 
+	 <item
+        android:id="@+id/action_settings"
+        android:title="@string/menu_settings"
+        android:showAsAction="never"/>
+	 
+
+	 
+	 
+</menu>

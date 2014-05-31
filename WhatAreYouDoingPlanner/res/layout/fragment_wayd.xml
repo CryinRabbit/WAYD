@@ -8,16 +8,18 @@
     
     
     <CalendarView
-       android:id="@+id/calendarView1"
-         android:layout_width="match_parent"
-         android:layout_height="226dp"
-          style="?android:listSeparatorTextViewStyle"/>
+    	android:id="@+id/calendarView1"
+    	android:layout_width="match_parent"
+        android:layout_height="226dp"
+        style="?android:listSeparatorTextViewStyle"
+        android:background="@drawable/header"/>
 
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="bottom"/>
+        android:gravity="bottom"
+        android:background="@drawable/header"/>
 
    
  

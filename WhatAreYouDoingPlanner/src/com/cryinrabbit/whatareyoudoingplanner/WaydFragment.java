@@ -147,6 +147,9 @@ public class WaydFragment extends ListFragment {
 			}
 
 			 for(int ii=0;ii<schedule.length;ii++){
+				
+				String title=f.getTitle(schedule[ii]);
+				
 				if(f.findMo(schedule[ii])){
 					Event iii = new Event();
 

@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
- class Findit {
+ public class Findit {
 	
 	public Findit(){		
 	}
@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 	public static HashSet<String> findWeek(String str){
 		
 		HashSet<String> evenWeekday=new HashSet<String>();
-		String pattern=".{2,8}[1]?[0-9]:[0-5][0-9][P|A]M.{0,3}[1]?[0-9]:[0-5][0-9][P|A]M";
+		String pattern="[A-Za-z0-9- y]{10,13}[A-Za-z ]{2,8}1?[0-9]:[0-5][0-9][Pp|Aa][Mm].{0,4}1?[0-9]:[0-5][0-9][Pp|Aa][Mm]";
 		Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(str);
         String input=null;
@@ -26,6 +26,11 @@ import java.util.regex.Pattern;
     
         return evenWeekday;
 	}
+	
+	public static String titile(HashSet<String> str){
+		
+	}
+	
 	
 	
 	public static boolean findMo(String str){

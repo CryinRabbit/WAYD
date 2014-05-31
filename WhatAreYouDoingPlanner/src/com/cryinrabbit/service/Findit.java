@@ -1,12 +1,9 @@
 package com.cryinrabbit.service;
 
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import android.content.ClipboardManager;
-import android.content.Context;
 
   public class Findit {
 	
@@ -30,6 +27,13 @@ import android.content.Context;
         return evenWeekday;
 	}
 	
+	public static String getTitle(String str){
+		String title="";
+		for(int i=0;i<10;i++){
+			title+=str.charAt(i);
+		}
+		return title;
+	} 
 	
 	public static boolean findMo(String str){
 		String pattern="Mo";

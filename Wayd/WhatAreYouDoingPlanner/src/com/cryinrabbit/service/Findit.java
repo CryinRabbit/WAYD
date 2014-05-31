@@ -5,9 +5,12 @@ import java.util.Iterator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+<<<<<<< HEAD
 import android.content.ClipboardManager;
 import android.content.Context;
 
+=======
+>>>>>>> b83c88fe1298e799bb1bd230c18fffec88dfdb23
  public class Findit {
 	
 	public Findit(){		
@@ -16,7 +19,11 @@ import android.content.Context;
 	public static HashSet<String> findWeek(String str){
 		
 		HashSet<String> evenWeekday=new HashSet<String>();
+<<<<<<< HEAD
 		String pattern=".{2,8}[1]?[0-9]:[0-5][0-9][P|A]M.{0,3}[1]?[0-9]:[0-5][0-9][P|A]M";
+=======
+		String pattern="[A-Za-z0-9- y]{10,13}[A-Za-z ]{2,8}1?[0-9]:[0-5][0-9][Pp|Aa][Mm].{0,4}1?[0-9]:[0-5][0-9][Pp|Aa][Mm]";
+>>>>>>> b83c88fe1298e799bb1bd230c18fffec88dfdb23
 		Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(str);
         String input=null;
@@ -30,6 +37,14 @@ import android.content.Context;
         return evenWeekday;
 	}
 	
+<<<<<<< HEAD
+=======
+	public static String titile(HashSet<String> str){
+		
+	}
+	
+	
+>>>>>>> b83c88fe1298e799bb1bd230c18fffec88dfdb23
 	
 	public static boolean findMo(String str){
 		String pattern="Mo";
@@ -89,7 +104,11 @@ import android.content.Context;
         return input;
 	}
 	
+<<<<<<< HEAD
 	public static String findStartTime(String str){
+=======
+public static String findStartTime(String str){
+>>>>>>> b83c88fe1298e799bb1bd230c18fffec88dfdb23
 		
 		String pattern="[1]?[0-9]:[0-5][0-9][P|A]M.";
 		Pattern r = Pattern.compile(pattern);
@@ -129,6 +148,7 @@ import android.content.Context;
 	}
 
 	public static String findEndTime(String str){
+<<<<<<< HEAD
 	
 	String pattern="[1]?[0-9]:[0-5][0-9][P|A]M";
 	Pattern r = Pattern.compile(pattern);
@@ -166,15 +186,59 @@ import android.content.Context;
 }	
 
 
+=======
+		
+		String pattern="[1]?[0-9]:[0-5][0-9][P|A]M";
+		Pattern r = Pattern.compile(pattern);
+	    Matcher m = r.matcher(str);
+	    String input=null;
+	    
+	    while(m.find()){
+	    	input=m.group();
+	    }
+	    
+	    String pattern2="PM";
+	    Pattern r2 = Pattern.compile(pattern2);
+	    Matcher m2 = r2.matcher(input);
+	    if(m2.find()){
+	    	String a=input.replace("PM", "");
+	    	int b=Integer.parseInt(a.charAt(0)+"");
+	    	b=b+12;
+	    	String c=b+"";
+	    	for(int j=1;j<a.length();j++){
+	    		c=c+a.charAt(j);
+	    	}
+	    	input=c;
+	    }
+	   
+	    	String pattern3="AM";
+	    	Pattern r3 = Pattern.compile(pattern3);
+	    	Matcher m3 = r3.matcher(input);
+	    	if(m3.find()){
+	    	String a=input.replace("AM", "");
+	    	input=a;
+	    }
+	    
+	    return input;
+		}
+	}	
+	
+ 
+>>>>>>> b83c88fe1298e799bb1bd230c18fffec88dfdb23
  
  
  
  /*
 public class Findit{
+<<<<<<< HEAD
 >>>>>>> e1ba56d19cf38e43eb6711beb864188e5a553c9c:WhatAreYouDoingPlanner/src/com/cryinrabbit/service/Findit.java
 	public static void main(String[] args){
 		String x="jhkjMoWe x2:00PM-4:00PM jlkjuop ljlk;j                                        ;;jlk ljklj;l ;l jklj kjkl MoWeFr 2:00PM-4:00PM jlkjuop ljlk;j ";
 		
+=======
+	public static void main(String[] args){
+		String x="jhkjMoWe x2:00PM-4:00PM jlkjuop ljlk;j                                        ;;jlk ljklj;l ;l jklj kjkl MoWeFr 2:00PM-4:00PM jlkjuop ljlk;j ";
+>>>>>>> b83c88fe1298e799bb1bd230c18fffec88dfdb23
 		Findit f=new Findit();
 		HashSet<String> a=f.findWeek(x);
 		int count=0;
@@ -259,4 +323,8 @@ public class Findit{
 		}
 	}
 }
+<<<<<<< HEAD
 */
+=======
+*/
+>>>>>>> b83c88fe1298e799bb1bd230c18fffec88dfdb23

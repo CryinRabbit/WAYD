@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import android.content.ClipboardManager;
 import android.content.Context;
 
- public class Findit {
+  public class Findit {
 	
 	public Findit(){		
 	}

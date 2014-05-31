@@ -2,7 +2,6 @@ package com.cryinrabbit.service;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBOpenHelper extends SQLiteOpenHelper {
@@ -13,7 +12,7 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE users(usersid string primary key, name varchar(20))");
-		db.execSQL("CREATE TABLE events(usersid string primary key, title varchar(20), date varchar(20), s_time varchar(20), e_time varchar(20), location varchar(20))");
+		db.execSQL("CREATE TABLE events(id integer primary key autoincrement, title varchar(20), s_date varchar(20), e_date varchar(20), weekday varchar(20),s_time varchar(20), e_time varchar(20), location varchar(20))");
 	}
 
 
@@ -21,5 +20,5 @@ public class DBOpenHelper extends SQLiteOpenHelper {
 		//db.execSQL("ALERT TABLE user ADD phone VARCHAR(12) NULL");
 		onCreate(db);
 	}
-
+ 
 }

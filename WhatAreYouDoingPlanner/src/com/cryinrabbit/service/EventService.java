@@ -15,33 +15,35 @@ public class EventService {
 	
 	public void saveEvent(Event event){
 		SQLiteDatabase db=dbOpenHelper.getWritableDatabase();
-		db.execSQL("insert into events(usersid,title,date,s_time,e_time,location) values(?,?,?,?,?,?)",
-				new Object[]{event.getId(), event.getTitel(), event.getDate(), event.getS_time(), event.getE_time(), event.getLocation()});
-		
+		db.execSQL("insert into events(id,title,s_date,e_date,weekday,s_time,e_time,location) values(?,?,?,?,?,?,?,?)",
+				new Object[]{event.getId(), event.getTitel(), event.getS_date(), event.getE_date(), event.getWeekday(), event.getS_time(), event.getE_time(), event.getLocation()});
+		 
 	}
 	
-	public void deleteEvent(String id){
+	public void deleteEvent(int id){
 		SQLiteDatabase db=dbOpenHelper.getWritableDatabase();
-		db.execSQL("delete from events where usersid=?", new Object[]{id});
+		db.execSQL("delete from events where id=?", new Object[]{id});
 	}
 	
 	public void updateEvent(Event event){
 		SQLiteDatabase db=dbOpenHelper.getWritableDatabase();
-		db.execSQL("update events set title=?, date=?, s_time=?, e_time=?, location=? where usersid=?", new Object[]{event.getTitel(),event.getDate(),event.getS_time(),event.getE_time(),event.getLocation(),event.getId()});
+		db.execSQL("update events set title=?, s_date=?,e_date=?, weekday=?, s_time=?, e_time=?, location=? where id=?", new Object[]{event.getTitel(), event.getE_date(), event.getS_date(), event.getWeekday(),event.getS_time(),event.getE_time(),event.getLocation(),event.getId()});
 	}
 	
-	public Event findEvent(String id){
+	public Event findEvent(int id){
 		SQLiteDatabase db=dbOpenHelper.getReadableDatabase();
 
-		Cursor cursor1=db.rawQuery("select * from events where usersid=?", new String[]{id.toString()});
+		Cursor cursor1=db.rawQuery("select * from events where id=?", new String[]{id+""});
 		if(cursor1.moveToFirst()){
-			String usersid=cursor1.getString(cursor1.getColumnIndex("usersid"));
+			String userid=cursor1.getString(cursor1.getColumnIndex("id"));
 			String title=cursor1.getString(cursor1.getColumnIndex("title"));
-			String date=cursor1.getString(cursor1.getColumnIndex("date"));
+			String s_date=cursor1.getString(cursor1.getColumnIndex("s_date"));
+			String e_date=cursor1.getString(cursor1.getColumnIndex("e_date"));
+			String weekday=cursor1.getString(cursor1.getColumnIndex("weekday"));
 			String s_time=cursor1.getString(cursor1.getColumnIndex("s_time"));
 			String e_time=cursor1.getString(cursor1.getColumnIndex("e_time"));
 			String location=cursor1.getString(cursor1.getColumnIndex("location"));
-			return new Event(usersid,title,date,s_time,e_time,location);
+			return new Event(Integer.parseInt(userid), title, s_date, e_date, weekday,s_time, e_time, location);
 		}
 		cursor1.close();
 		return null;

@@ -27,6 +27,7 @@ public class Event {
 		
 	}
 	
+
 	public void setLocation(String loc) {
 		mLocation = loc;
 	}

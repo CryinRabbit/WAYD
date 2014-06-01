@@ -538,10 +538,13 @@ public class WaydFragment extends ListFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		removeEmptyEvents(mEvents);
 		EventAdapter adapter = new EventAdapter(filterEvents(mEvents, date));
 		lv.setAdapter(adapter);
 		((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-		
+		//Set the calendar day to the event's date recently added
+		if(mEvents.size() > 0)
+			calendar.setDate(mEvents.get(mEvents.size()-1).getStartDate().getTime());
 
 	}
 

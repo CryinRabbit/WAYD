@@ -192,6 +192,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 		mTitleField = (EditText)v.findViewById(R.id.event_title);
 		mTitleField.setText(mEvent.getTitle());
 		getActivity().setTitle(mEvent.getTitle());
+		
 		mTitleField.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence c, int start, int before, int count) {
 				mEvent.setTitle(c.toString());
@@ -200,7 +201,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-	
+				
 			}
 
 			@Override
@@ -216,16 +217,18 @@ public class EventFragment extends android.support.v4.app.Fragment {
 		//takes care of location field
 		mLocationField = (EditText)v.findViewById(R.id.event_location);
 		mLocationField.setText(mEvent.getLocation());
-		getActivity().setTitle(mEvent.getLocation());
+		mEvent.setLocation("Unknown");
 		mLocationField.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence c, int start, int before, int count) {
+          
 				mEvent.setLocation(c.toString());
+				
 			}
 
 			@Override
 			public void beforeTextChanged(CharSequence s, int start, int count,
 					int after) {
-	
+				
 			}
 
 			@Override

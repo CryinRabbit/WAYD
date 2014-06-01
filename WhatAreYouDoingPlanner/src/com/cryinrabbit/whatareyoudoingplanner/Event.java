@@ -19,6 +19,7 @@ public class Event {
 	private Date mTime;
 	
 	
+	
 	public Event() {
 		mId = UUID.randomUUID();
 		mStartDate = new Date();
@@ -34,6 +35,7 @@ public class Event {
 		e.mTitle = this.mTitle;
 		e.mId = this.mId;
 		e.mTime = this.mTime;
+		e.mLocation = this.mLocation;
 		
 		return e;
 	}

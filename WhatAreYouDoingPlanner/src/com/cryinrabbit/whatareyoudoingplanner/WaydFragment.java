@@ -363,11 +363,17 @@ public class WaydFragment extends ListFragment {
 
 			return true;
 
-
-
+		case R.id.action_settings:
+			Intent j = new Intent(getActivity(), LoginActivity.class);
+			startActivity(j);
+			return true;
+			
+		case R.id.help_page:
+			showOverLay();
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);	
-		}
+		} 
 
 
 	}

@@ -2,6 +2,7 @@ package com.cryinrabbit.whatareyoudoingplanner;
 
 /*
  *This is the main menu of the app
+ *Useless comment//
  */
 
 import java.util.ArrayList;

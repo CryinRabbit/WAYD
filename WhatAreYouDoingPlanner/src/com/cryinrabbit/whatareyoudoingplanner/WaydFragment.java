@@ -39,6 +39,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.cryinrabbit.service.Findit;
+import com.roomorama.caldroid.CaldroidFragment;
 
 import android.content.SharedPreferences;
 
@@ -164,7 +165,7 @@ public class WaydFragment extends ListFragment {
 			//intent.putExtra("MySchedule", b);
 
 			pictureTaken = true;	
-
+			//mEvents.clear();
 			startActivityForResult(intent,1);
 			return true;
 		case R.id.chooseExisting:
@@ -364,10 +365,10 @@ public class WaydFragment extends ListFragment {
 
 			return true;
 
-		case R.id.action_settings:
-			Intent j = new Intent(getActivity(), LoginActivity.class);
-			startActivity(j);
-			return true;
+		//case R.id.action_settings:
+			//Intent j = new Intent(getActivity(), LoginActivity.class);
+			//startActivity(j);
+			//return true;
 			
 		case R.id.help_page:
 			showOverLay();
@@ -403,10 +404,8 @@ public class WaydFragment extends ListFragment {
 		for(int i = 0; i < temp.size(); i++) {
 			//check if date of the Events list matches date from the
 			//date specified in the calendar
-			if(temp.get(i).getStartDate().getTime() != d.getTime()) {
-				Log.d("mEvent item", temp.get(i).getStartDate().getTime()+"");
-				Log.d("date item", d.getTime()+"");
-				Log.d("msg", "removed Events, not that date");
+			if(temp.get(i).getStartDate().before(d) || temp.get(i).getStartDate().after(d)) {
+				
 				temp.remove(i);
 			}
 
@@ -443,7 +442,9 @@ public class WaydFragment extends ListFragment {
 		calendar.setDate(date.getTime());
 
 		//calendar.setBackgroundColor(Color.WHITE);
-		calendar.setFocusedMonthDateColor(Color.BLUE);
+		//calendar.setFocusedMonthDateColor(Color.BLUE);
+		
+		CaldroidFragment caldroidFragment = new CaldroidFragment();
 
 
 		///calendar.setShownWeekCount(2);
@@ -455,8 +456,6 @@ public class WaydFragment extends ListFragment {
 		EventAdapter adapter = new EventAdapter(mEvents);
 		lv = (ListView)v.findViewById(R.id.listView1);
 		lv.setAdapter(adapter);
-		((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-		//lv.setBackgroundColor(Color.WHITE);
 
 		final Calendar cal = Calendar.getInstance();
 
@@ -468,14 +467,14 @@ public class WaydFragment extends ListFragment {
 				cal.set(year, month, dayOfMonth);
 				date = cal.getTime();
 
-
-				//Log.d("msg", cal.getTime().toString());
-				//lv.setAdapter(new EventAdapter(filterEvents(mEvents, date)));
-
-				//((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
-
 				//should refresh the list view
+				//Log.d("msg", cal.getTime().toString());
+				lv.setAdapter(new EventAdapter(mEvents));
 
+				((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+
+				
+				
 
 
 

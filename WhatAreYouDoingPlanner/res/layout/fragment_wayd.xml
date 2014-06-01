@@ -5,22 +5,20 @@
     android:orientation="vertical"
     android:background="@drawable/bg0" >
    
-    
-    
     <CalendarView
-    	android:id="@+id/calendarView1"
-    	android:layout_width="match_parent"
-        android:layout_height="226dp"
+        android:id="@+id/calendarView1"
         style="?android:listSeparatorTextViewStyle"
-        android:background="@drawable/header"/>
+        android:layout_width="match_parent"
+        android:layout_height="226dp"
+        android:background="@drawable/header" />
 
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/header"
         android:gravity="bottom"
-        android:background="@drawable/header"/>
-
-   
+         >
+    </ListView>
  
  </LinearLayout>

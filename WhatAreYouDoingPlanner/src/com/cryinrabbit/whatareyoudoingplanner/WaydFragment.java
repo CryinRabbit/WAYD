@@ -463,7 +463,8 @@ public class WaydFragment extends ListFragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
-
+		
+		Log.d("msg", "back to Calendar view");
 
 		View v = inflater.inflate(R.layout.fragment_wayd, parent, false);
 
@@ -537,7 +538,10 @@ public class WaydFragment extends ListFragment {
 	@Override
 	public void onResume() {
 		super.onResume();
+		EventAdapter adapter = new EventAdapter(filterEvents(mEvents, date));
+		lv.setAdapter(adapter);
 		((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+		
 
 	}
 

@@ -27,6 +27,17 @@ public class Event {
 		
 	}
 	
+	public Event clone() {
+		Event e = new Event();
+		
+		e.mStartDate = this.mStartDate;
+		e.mTitle = this.mTitle;
+		e.mId = this.mId;
+		e.mTime = this.mTime;
+		
+		return e;
+	}
+	
 
 	public void setLocation(String loc) {
 		mLocation = loc;

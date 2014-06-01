@@ -371,7 +371,7 @@ public class WaydFragment extends ListFragment {
 		//case R.id.action_settings:
 			//Intent j = new Intent(getActivity(), LoginActivity.class);
 			//startActivity(j);
-			return true;
+			
 			//return true;		
 			//return true;
 		
@@ -410,20 +410,41 @@ public class WaydFragment extends ListFragment {
 	//This method will take care of updating list of events
 	//according to the day user chooses in the calendar
 	private ArrayList<Event> filterEvents(ArrayList<Event> e, Date d) {
-		ArrayList<Event> temp = new ArrayList<Event>();
+		Calendar cal3 = Calendar.getInstance();
+		cal3.setTime(d);
 		
-
-		for(int i = 0; i < temp.size(); i++) {
-			//check if date of the Events list matches date from the
-			//date specified in the calendar
-			if(temp.get(i).getStartDate().before(d) || temp.get(i).getStartDate().after(d)) {
-				
-				temp.remove(i);
-			}
-
+		
+		ArrayList<Event> clone = new ArrayList<Event>();
+		for(Event event : e) {
+			clone.add(event.clone());
 		}
-
-		return temp;
+		
+		Log.d("size of clone array", "" + clone.size());
+		
+		for(int i = 0; i < clone.size(); i++) {
+			
+			//Get calendar date of clone Event
+			Calendar cal2 = Calendar.getInstance();
+			cal2.setTime(clone.get(i).getStartDate());
+			
+			Log.d("msg clone" +clone.get(i).getTitle(), "Month: " +  cal2.get(Calendar.MONTH) + "Day: " + cal2.get(Calendar.DAY_OF_MONTH));
+			Log.d("msg date calendar",  cal3.get(Calendar.MONTH) + "Day: " + cal3.get(Calendar.DAY_OF_MONTH));
+			
+			
+			if((cal2.get(Calendar.MONTH) != cal3.get(Calendar.MONTH)) || (cal2.get(Calendar.DAY_OF_MONTH))
+					!= cal3.get(Calendar.DAY_OF_MONTH)) {
+				Log.d("msg event title removed", clone.get(i).getTitle());
+				clone.remove(clone.get(i));
+				i--;
+			}
+			
+			
+		}
+		
+		
+		
+		return clone;
+		
 	}
 
 	//Test code
@@ -456,7 +477,6 @@ public class WaydFragment extends ListFragment {
 		//calendar.setBackgroundColor(Color.WHITE);
 		//calendar.setFocusedMonthDateColor(Color.BLUE);
 		
-		CaldroidFragment caldroidFragment = new CaldroidFragment();
 
 
 		///calendar.setShownWeekCount(2);
@@ -465,27 +485,34 @@ public class WaydFragment extends ListFragment {
 
 		removeEmptyEvents(mEvents);
 
-		EventAdapter adapter = new EventAdapter(mEvents);
+		//EventAdapter adapter = new EventAdapter(mEvents);
 		lv = (ListView)v.findViewById(R.id.listView1);
-		lv.setAdapter(adapter);
+		//lv.setAdapter(adapter);
 
-		final Calendar cal = Calendar.getInstance();
+		
+		EventAdapter adapter = new EventAdapter(filterEvents(mEvents, date));
+		lv.setAdapter(adapter);
+		((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+		
 
 		//now display only events from selected day
 		//Listener to handle calendar
 		calendar.setOnDateChangeListener(new OnDateChangeListener() {
 			 public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
 
+				Calendar cal = Calendar.getInstance();
 				cal.set(year, month, dayOfMonth);
 				date = cal.getTime();
 
 				//should refresh the list view
 				//Log.d("msg", cal.getTime().toString());
-				lv.setAdapter(new EventAdapter(mEvents));
-
+			
+				
+				
+				
+				lv.setAdapter(new EventAdapter(filterEvents(mEvents, date)));
 				((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
 
-				
 				
 
 

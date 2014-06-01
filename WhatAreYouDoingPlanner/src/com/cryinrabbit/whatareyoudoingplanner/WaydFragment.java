@@ -419,7 +419,6 @@ public class WaydFragment extends ListFragment {
 			clone.add(event.clone());
 		}
 		
-		Log.d("size of clone array", "" + clone.size());
 		
 		for(int i = 0; i < clone.size(); i++) {
 			
@@ -427,13 +426,11 @@ public class WaydFragment extends ListFragment {
 			Calendar cal2 = Calendar.getInstance();
 			cal2.setTime(clone.get(i).getStartDate());
 			
-			Log.d("msg clone" +clone.get(i).getTitle(), "Month: " +  cal2.get(Calendar.MONTH) + "Day: " + cal2.get(Calendar.DAY_OF_MONTH));
-			Log.d("msg date calendar",  cal3.get(Calendar.MONTH) + "Day: " + cal3.get(Calendar.DAY_OF_MONTH));
 			
 			
 			if((cal2.get(Calendar.MONTH) != cal3.get(Calendar.MONTH)) || (cal2.get(Calendar.DAY_OF_MONTH))
 					!= cal3.get(Calendar.DAY_OF_MONTH)) {
-				Log.d("msg event title removed", clone.get(i).getTitle());
+			
 				clone.remove(clone.get(i));
 				i--;
 			}
@@ -504,12 +501,7 @@ public class WaydFragment extends ListFragment {
 				cal.set(year, month, dayOfMonth);
 				date = cal.getTime();
 
-				//should refresh the list view
-				//Log.d("msg", cal.getTime().toString());
-			
-				
-				
-				
+								
 				lv.setAdapter(new EventAdapter(filterEvents(mEvents, date)));
 				((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
 
@@ -531,8 +523,6 @@ public class WaydFragment extends ListFragment {
             	Event e = (Event)lv.getItemAtPosition(position);
             	
             	FragmentManager fm = getActivity().getSupportFragmentManager();
-            	Log.d("title", e.getTitle());
-            	Log.d("location", e.getLocation()+"");
             	EventInfoFragment dialog = new EventInfoFragment(e.getTitle(), e.getLocation(), e.getTime().toString());
             	dialog.show(fm, EVENT_INFO_DIALOG);
               

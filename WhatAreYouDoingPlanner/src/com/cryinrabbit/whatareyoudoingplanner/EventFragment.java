@@ -37,6 +37,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 	private Button mDateButton;
 	private static final String DIALOG_DATE = "date";
 	private static final int REQUEST_DATE = 1;
+	private Button mCreateEventButton;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -265,6 +266,16 @@ public class EventFragment extends android.support.v4.app.Fragment {
 				DatePickerFragment dialog = DatePickerFragment.newInstance(mEvent.getStartDate());
 				dialog.setTargetFragment(EventFragment.this, REQUEST_DATE);
 				dialog.show(fm, DIALOG_DATE);
+			}
+		});
+		
+		mCreateEventButton = (Button)v.findViewById(R.id.createevent);
+		mCreateEventButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				getActivity().finish();
 			}
 		});
 		

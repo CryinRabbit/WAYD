@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WAYD Android OCR</string>
+    <string name="button_text">OCR</string>
+    <string name="text_hint">OCR Text</string>
+    <string name="gallery_view">OCR Existing Images</string>
+    <string name="desc">View Images</string>
+
+</resources>

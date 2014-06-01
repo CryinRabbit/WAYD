@@ -60,6 +60,8 @@ public class TimePickerFragment extends DialogFragment {
 		View v = getActivity().getLayoutInflater().inflate(R.layout.dialog_time,null);
 		TimePicker timePicker = (TimePicker)v.findViewById(R.id.dialog_time_timePicker);
 		
+		timePicker.setIs24HourView(true);
+		
 		timePicker.setCurrentHour(hour);
 		timePicker.setCurrentMinute(minute);
 		

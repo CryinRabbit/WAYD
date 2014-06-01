@@ -90,7 +90,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 			return hour + ":" + minute;
 		}
 	
-	//convert to desired date formar
+	//convert to desired date formarT
 	private String dateFormat(int dayWeek, int month, int dayNumber, int year) {
 		String dayOfWeek = "", monthName = "";
 		switch(dayWeek) {

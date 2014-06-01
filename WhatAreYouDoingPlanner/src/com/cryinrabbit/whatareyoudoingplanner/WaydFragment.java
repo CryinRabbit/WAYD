@@ -14,6 +14,7 @@ import java.util.Iterator;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.app.AlertDialog;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -365,10 +367,25 @@ public class WaydFragment extends ListFragment {
 
 			return true;
 
+<<<<<<< HEAD
 		//case R.id.action_settings:
 			//Intent j = new Intent(getActivity(), LoginActivity.class);
 			//startActivity(j);
 			//return true;
+=======
+		case R.id.action_settings:
+			Intent j = new Intent(getActivity(), LoginActivity.class);
+			startActivity(j);
+			return true;
+		
+		case R.id.about_page:
+			AlertDialog aboutDialog = new AlertDialog.Builder(getActivity()).setTitle("About").setMessage("Version1.0")
+			.setPositiveButton(android.R.string.ok, null).show();
+			WindowManager.LayoutParams params = aboutDialog.getWindow().getAttributes();
+			params.alpha = 0.6f;
+			aboutDialog.getWindow().setAttributes(params);
+			return true;
+>>>>>>> 92538c04786da39326ca83bc63423579acb9d3e8
 			
 		case R.id.help_page:
 			showOverLay();

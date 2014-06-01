@@ -396,10 +396,9 @@ public class WaydFragment extends ListFragment {
 	//This method will take care of updating list of events
 	//according to the day user chooses in the calendar
 	private ArrayList<Event> filterEvents(ArrayList<Event> e, Date d) {
+		
 		ArrayList<Event> temp = new ArrayList<Event>();
-		for(Event ev : e) {
-			//temp.add((Event) ev.clone());
-		}
+		
 
 		for(int i = 0; i < temp.size(); i++) {
 			//check if date of the Events list matches date from the
@@ -541,7 +540,7 @@ public class WaydFragment extends ListFragment {
 			else
 				t = cal.get(Calendar.HOUR_OF_DAY) + ":" + cal.get(Calendar.MINUTE);
 
-			timeTextView.setText(t+" PM");
+			timeTextView.setText(t);
 
 
 

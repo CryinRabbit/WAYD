@@ -367,25 +367,12 @@ public class WaydFragment extends ListFragment {
 
 			return true;
 
-<<<<<<< HEAD
+
 		//case R.id.action_settings:
 			//Intent j = new Intent(getActivity(), LoginActivity.class);
 			//startActivity(j);
-			//return true;
-=======
-		case R.id.action_settings:
-			Intent j = new Intent(getActivity(), LoginActivity.class);
-			startActivity(j);
-			return true;
+			//return true;		
 		
-		case R.id.about_page:
-			AlertDialog aboutDialog = new AlertDialog.Builder(getActivity()).setTitle("About").setMessage("Version1.0")
-			.setPositiveButton(android.R.string.ok, null).show();
-			WindowManager.LayoutParams params = aboutDialog.getWindow().getAttributes();
-			params.alpha = 0.6f;
-			aboutDialog.getWindow().setAttributes(params);
-			return true;
->>>>>>> 92538c04786da39326ca83bc63423579acb9d3e8
 			
 		case R.id.help_page:
 			showOverLay();

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GridView_More</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string-array name="str1">
+        <item>Grid 1</item>
+        <item>Grid 2</item>
+        <item>Grid 3</item>
+        <item>Grid 4</item>
+        <item>Grid 5</item>
+        <item>Grid 6</item>
+ 	</string-array>
+    <string name="action_settings">action_settings</string>
+</resources>

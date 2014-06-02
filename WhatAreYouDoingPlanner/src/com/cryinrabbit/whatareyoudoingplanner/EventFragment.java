@@ -40,6 +40,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 	private static final int REQUEST_DATE = 1;
 	private Button mCreateEventButton;
 	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

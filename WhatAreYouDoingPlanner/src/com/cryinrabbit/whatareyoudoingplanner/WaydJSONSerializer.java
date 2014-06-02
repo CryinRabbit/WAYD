@@ -15,6 +15,7 @@ import org.json.JSONException;
 import org.json.JSONTokener;
 
 import android.content.Context;
+import android.util.Log;
 
 public class WaydJSONSerializer {
 	
@@ -26,7 +27,7 @@ public class WaydJSONSerializer {
 		mFilename = f;
 	}
 	
-	public ArrayList<Event> loadCrimes() throws IOException, JSONException {
+	public ArrayList<Event> loadEvents() throws IOException, JSONException {
 		
 		ArrayList<Event> events = new ArrayList<Event>();
 		BufferedReader reader = null;
@@ -45,7 +46,7 @@ public class WaydJSONSerializer {
 			}
 			
 		} catch(FileNotFoundException e) {
-			//Ignore
+			Log.d("msg", "could not load events");
 		} finally {
 			if(reader != null)
 				reader.close();

@@ -83,6 +83,12 @@
         <service android:name="com.blundell.tut.service.ScheduleService" />
         <service android:name="com.blundell.tut.service.NotifyService" />
             
+        
+        <activity
+            android:name="com.manishkpr.viewpagerimagegallery.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        
     </application>
     
     <uses-permission android:name="android.permission.CAMERA"/>

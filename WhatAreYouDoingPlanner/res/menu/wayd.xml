@@ -24,16 +24,21 @@
 	 <item
         android:id="@+id/action_settings"
         android:title="@string/menu_settings"
-        android:showAsAction="ifRoom"/>
+        android:showAsAction="never"/>
 	 
 	 <item
         android:id="@+id/help_page"
         android:title="@string/menu_help"
-        android:showAsAction="ifRoom"/>
+        android:showAsAction="never"/>
+	 
+	 <item
+	     android:id="@+id/instruction"
+	     android:title="@string/instruction"
+	     android:showAsAction="never"/>
 	 
 	 <item
         android:id="@+id/about_page"
         android:title="@string/menu_about"
-        android:showAsAction="ifRoom"/>
+        android:showAsAction="never"/>
 	 
 </menu>

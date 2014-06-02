@@ -19,6 +19,7 @@ import org.json.JSONException;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.AlertDialog;
+import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
@@ -46,6 +47,7 @@ import android.widget.TextView;
 
 import com.cryinrabbit.service.Findit;
 //import com.roomorama.caldroid.CaldroidFragment;
+
 
 
 
@@ -122,25 +124,6 @@ public class WaydFragment extends ListFragment {
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		super.onCreateOptionsMenu(menu, inflater);
 
-		/*
-		// add event
-		SubMenu subMenu1 = menu.addSubMenu(R.id.menu_item_new_event);
-		MenuItem subMenu1Item = subMenu1.getItem();
-		subMenu1Item.setIcon(R.drawable.ic_action_new);
-		subMenu1Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-*/
-
-		// camera drop down menu
-		/*SubMenu subMenu2 = menu.addSubMenu(R.string.new_picture);
-
-		subMenu2.add(R.string.take_photo);
-		subMenu2.add(R.string.choose_existing);
-
-		MenuItem subMenu2Item = subMenu2.getItem();
-		subMenu2Item.setIcon(R.drawable.ic_action_camera);
-		subMenu2Item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);*/
-
-
 		inflater.inflate(R.menu.wayd, menu);		
 
 	}
@@ -157,7 +140,6 @@ public class WaydFragment extends ListFragment {
 			i.putExtra(EventFragment.EXTRA_EVENT_ID, e.getId());
 			startActivityForResult(i,0);
 			return true;
-
 
 		case R.id.takePicture:
 
@@ -177,6 +159,830 @@ public class WaydFragment extends ListFragment {
 			pictureTaken = true;	
 			//mEvents.clear();
 			startActivityForResult(intent,1);
+			
+/*			
+			FragmentManager fm = getActivity().getSupportFragmentManager();
+			ClipboardManager manager = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+			//String x = manager.getText().toString();
+			String x = manager.getText().toString();
+
+			Log.d("msg", "getting schedule info");
+				//manager.setText("");
+				Findit f=new Findit();
+				HashSet<String> a=f.findWeek(x);
+				int count=0;
+				String[] schedule=new String[a.size()];
+				Iterator iter = a.iterator();
+				while (iter.hasNext()) {
+					schedule[count++]=(String)iter.next();
+				}
+				
+				for(int ii=0, mon=0, tue=1, wed=2, thu=3, fri=4;
+						ii<schedule.length;ii++){
+					
+					//String title=f.getTitle(schedule[ii]);
+					
+					if(f.findMo(schedule[ii])){
+						Event iii1 = new Event();
+						Event iii2 = new Event();
+						Event iii3 = new Event();
+						Event iii4 = new Event();
+						Event iii5 = new Event();
+						Event iii6 = new Event();
+						Event iii7 = new Event();
+						Event iii8 = new Event();
+						Event iii9 = new Event();
+						Event iii10 = new Event();
+
+						String event="Mo";
+						String startTime=f.findStartTime(schedule[ii]);
+
+						String endTime=f.findEndTime(schedule[ii]);
+						System.out.print(event+"\t");
+
+						Calendar cal1 = Calendar.getInstance();
+						
+						//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+						/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+						cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+						cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+						cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+/*						
+						cal1.set(Calendar.MONTH, 2);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 31);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+
+						iii1.setTime(cal1.getTime());
+						iii1.setStartDate(cal1.getTime());
+						iii1.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 7);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii2.setTime(cal1.getTime());
+						iii2.setStartDate(cal1.getTime());
+						iii2.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 14);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii3.setTime(cal1.getTime());
+						iii3.setStartDate(cal1.getTime());
+						iii3.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 21);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii4.setTime(cal1.getTime());
+						iii4.setStartDate(cal1.getTime());
+						iii4.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 28);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii5.setTime(cal1.getTime());
+						iii5.setStartDate(cal1.getTime());
+						iii5.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 5);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii6.setTime(cal1.getTime());
+						iii6.setStartDate(cal1.getTime());
+						iii6.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 12);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii7.setTime(cal1.getTime());
+						iii7.setStartDate(cal1.getTime());
+						iii7.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 19);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii8.setTime(cal1.getTime());
+						iii8.setStartDate(cal1.getTime());
+						iii8.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 26);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii9.setTime(cal1.getTime());
+						iii9.setStartDate(cal1.getTime());
+						iii9.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 5);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 2);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii10.setTime(cal1.getTime());
+						iii10.setStartDate(cal1.getTime());
+						iii10.setTitle(f.getTitle(schedule[ii]));
+				
+						mEvents.add(iii1);
+						mEvents.add(iii2);
+						mEvents.add(iii3);
+						mEvents.add(iii4);
+						mEvents.add(iii5);
+						mEvents.add(iii6);
+						mEvents.add(iii7);
+						mEvents.add(iii8);
+						mEvents.add(iii9);
+						mEvents.add(iii10);
+
+						System.out.print(startTime+"\t");
+
+						System.out.println(endTime);
+						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+					}
+
+					if(f.findTu(schedule[ii])){
+						Event iii1 = new Event();
+						Event iii2 = new Event();
+						Event iii3 = new Event();
+						Event iii4 = new Event();
+						Event iii5 = new Event();
+						Event iii6 = new Event();
+						Event iii7 = new Event();
+						Event iii8 = new Event();
+						Event iii9 = new Event();
+						Event iii10 = new Event();
+
+						String event="Mo";
+						String startTime=f.findStartTime(schedule[ii]);
+
+						String endTime=f.findEndTime(schedule[ii]);
+						System.out.print(event+"\t");
+
+						Calendar cal1 = Calendar.getInstance();
+						
+						//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+						/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+						cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+						cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+						cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+/*						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 1);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+
+						iii1.setTime(cal1.getTime());
+						iii1.setStartDate(cal1.getTime());
+						iii1.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 8);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii2.setTime(cal1.getTime());
+						iii2.setStartDate(cal1.getTime());
+						iii2.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 15);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii3.setTime(cal1.getTime());
+						iii3.setStartDate(cal1.getTime());
+						iii3.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 22);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii4.setTime(cal1.getTime());
+						iii4.setStartDate(cal1.getTime());
+						iii4.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 29);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii5.setTime(cal1.getTime());
+						iii5.setStartDate(cal1.getTime());
+						iii5.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 6);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii6.setTime(cal1.getTime());
+						iii6.setStartDate(cal1.getTime());
+						iii6.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 13);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii7.setTime(cal1.getTime());
+						iii7.setStartDate(cal1.getTime());
+						iii7.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 20);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii8.setTime(cal1.getTime());
+						iii8.setStartDate(cal1.getTime());
+						iii8.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 27);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii9.setTime(cal1.getTime());
+						iii9.setStartDate(cal1.getTime());
+						iii9.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 5);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 3);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii10.setTime(cal1.getTime());
+						iii10.setStartDate(cal1.getTime());
+						iii10.setTitle(f.getTitle(schedule[ii]));
+				
+						mEvents.add(iii1);
+						mEvents.add(iii2);
+						mEvents.add(iii3);
+						mEvents.add(iii4);
+						mEvents.add(iii5);
+						mEvents.add(iii6);
+						mEvents.add(iii7);
+						mEvents.add(iii8);
+						mEvents.add(iii9);
+						mEvents.add(iii10);
+
+						System.out.print(startTime+"\t");
+
+						System.out.println(endTime);
+						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+						}
+
+						if(f.findWe(schedule[ii])){
+							Event iii1 = new Event();
+							Event iii2 = new Event();
+							Event iii3 = new Event();
+							Event iii4 = new Event();
+							Event iii5 = new Event();
+							Event iii6 = new Event();
+							Event iii7 = new Event();
+							Event iii8 = new Event();
+							Event iii9 = new Event();
+							Event iii10 = new Event();
+
+							String event="Mo";
+							String startTime=f.findStartTime(schedule[ii]);
+
+							String endTime=f.findEndTime(schedule[ii]);
+							System.out.print(event+"\t");
+
+							Calendar cal1 = Calendar.getInstance();
+							
+							//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+							/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+							cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+/*							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 2);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+
+							iii1.setTime(cal1.getTime());
+							iii1.setStartDate(cal1.getTime());
+							iii1.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 9);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii2.setTime(cal1.getTime());
+							iii2.setStartDate(cal1.getTime());
+							iii2.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 16);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii3.setTime(cal1.getTime());
+							iii3.setStartDate(cal1.getTime());
+							iii3.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 23);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii4.setTime(cal1.getTime());
+							iii4.setStartDate(cal1.getTime());
+							iii4.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 30);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii5.setTime(cal1.getTime());
+							iii5.setStartDate(cal1.getTime());
+							iii5.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 7);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii6.setTime(cal1.getTime());
+							iii6.setStartDate(cal1.getTime());
+							iii6.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 14);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii7.setTime(cal1.getTime());
+							iii7.setStartDate(cal1.getTime());
+							iii7.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 21);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii8.setTime(cal1.getTime());
+							iii8.setStartDate(cal1.getTime());
+							iii8.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 28);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii9.setTime(cal1.getTime());
+							iii9.setStartDate(cal1.getTime());
+							iii9.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 5);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 4);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii10.setTime(cal1.getTime());
+							iii10.setStartDate(cal1.getTime());
+							iii10.setTitle(f.getTitle(schedule[ii]));
+					
+							mEvents.add(iii1);
+							mEvents.add(iii2);
+							mEvents.add(iii3);
+							mEvents.add(iii4);
+							mEvents.add(iii5);
+							mEvents.add(iii6);
+							mEvents.add(iii7);
+							mEvents.add(iii8);
+							mEvents.add(iii9);
+							mEvents.add(iii10);
+
+							System.out.print(startTime+"\t");
+
+							System.out.println(endTime);
+							((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+						}
+
+						if(f.findTh(schedule[ii])){
+							Event iii1 = new Event();
+							Event iii2 = new Event();
+							Event iii3 = new Event();
+							Event iii4 = new Event();
+							Event iii5 = new Event();
+							Event iii6 = new Event();
+							Event iii7 = new Event();
+							Event iii8 = new Event();
+							Event iii9 = new Event();
+							Event iii10 = new Event();
+
+							String event="Mo";
+							String startTime=f.findStartTime(schedule[ii]);
+
+							String endTime=f.findEndTime(schedule[ii]);
+							System.out.print(event+"\t");
+
+							Calendar cal1 = Calendar.getInstance();
+							
+							//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+							/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+							cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+/*							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 3);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+
+							iii1.setTime(cal1.getTime());
+							iii1.setStartDate(cal1.getTime());
+							iii1.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 10);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii2.setTime(cal1.getTime());
+							iii2.setStartDate(cal1.getTime());
+							iii2.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 17);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii3.setTime(cal1.getTime());
+							iii3.setStartDate(cal1.getTime());
+							iii3.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 24);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii4.setTime(cal1.getTime());
+							iii4.setStartDate(cal1.getTime());
+							iii4.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 1);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii5.setTime(cal1.getTime());
+							iii5.setStartDate(cal1.getTime());
+							iii5.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 8);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii6.setTime(cal1.getTime());
+							iii6.setStartDate(cal1.getTime());
+							iii6.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 15);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii7.setTime(cal1.getTime());
+							iii7.setStartDate(cal1.getTime());
+							iii7.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 22);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii8.setTime(cal1.getTime());
+							iii8.setStartDate(cal1.getTime());
+							iii8.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 29);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii9.setTime(cal1.getTime());
+							iii9.setStartDate(cal1.getTime());
+							iii9.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 5);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 5);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii10.setTime(cal1.getTime());
+							iii10.setStartDate(cal1.getTime());
+							iii10.setTitle(f.getTitle(schedule[ii]));
+					
+							mEvents.add(iii1);
+							mEvents.add(iii2);
+							mEvents.add(iii3);
+							mEvents.add(iii4);
+							mEvents.add(iii5);
+							mEvents.add(iii6);
+							mEvents.add(iii7);
+							mEvents.add(iii8);
+							mEvents.add(iii9);
+							mEvents.add(iii10);
+
+							System.out.print(startTime+"\t");
+
+							System.out.println(endTime);
+							((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+						}
+
+						if(f.findFr(schedule[ii])){
+							Event iii1 = new Event();
+							Event iii2 = new Event();
+							Event iii3 = new Event();
+							Event iii4 = new Event();
+							Event iii5 = new Event();
+							Event iii6 = new Event();
+							Event iii7 = new Event();
+							Event iii8 = new Event();
+							Event iii9 = new Event();
+							Event iii10 = new Event();
+
+							String event="Mo";
+							String startTime=f.findStartTime(schedule[ii]);
+
+							String endTime=f.findEndTime(schedule[ii]);
+							System.out.print(event+"\t");
+
+							Calendar cal1 = Calendar.getInstance();
+							
+							//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+							/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+							cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+/*							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 4);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+
+							iii1.setTime(cal1.getTime());
+							iii1.setStartDate(cal1.getTime());
+							iii1.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 11);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii2.setTime(cal1.getTime());
+							iii2.setStartDate(cal1.getTime());
+							iii2.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 18);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii3.setTime(cal1.getTime());
+							iii3.setStartDate(cal1.getTime());
+							iii3.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 25);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii4.setTime(cal1.getTime());
+							iii4.setStartDate(cal1.getTime());
+							iii4.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 2);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii5.setTime(cal1.getTime());
+							iii5.setStartDate(cal1.getTime());
+							iii5.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 9);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii6.setTime(cal1.getTime());
+							iii6.setStartDate(cal1.getTime());
+							iii6.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 16);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii7.setTime(cal1.getTime());
+							iii7.setStartDate(cal1.getTime());
+							iii7.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 23);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii8.setTime(cal1.getTime());
+							iii8.setStartDate(cal1.getTime());
+							iii8.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 30);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii9.setTime(cal1.getTime());
+							iii9.setStartDate(cal1.getTime());
+							iii9.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 5);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 6);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii10.setTime(cal1.getTime());
+							iii10.setStartDate(cal1.getTime());
+							iii10.setTitle(f.getTitle(schedule[ii]));
+					
+							mEvents.add(iii1);
+							mEvents.add(iii2);
+							mEvents.add(iii3);
+							mEvents.add(iii4);
+							mEvents.add(iii5);
+							mEvents.add(iii6);
+							mEvents.add(iii7);
+							mEvents.add(iii8);
+							mEvents.add(iii9);
+							mEvents.add(iii10);
+
+							System.out.print(startTime+"\t");
+
+							System.out.println(endTime);
+							((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+						}
+	/*
+						if(f.findSa(schedule[ii])){
+							String event="Sa";
+							String startTime=f.findStartTime(schedule[ii]);
+							String endTime=f.findEndTime(schedule[ii]);
+							System.out.print(event+"\t");
+							System.out.print(startTime+"\t");
+							System.out.println(endTime);
+							((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+						}
+	*/
+//					}
+			
 			return true;
 		case R.id.chooseExisting:
 			 return true;
@@ -186,24 +992,857 @@ public class WaydFragment extends ListFragment {
 			ClipboardManager manager = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
 			//String x = manager.getText().toString();
 			String x = manager.getText().toString();
+			if(pictureTaken)
+			{
 
+			Log.d("msg", "getting schedule info");
+				//manager.setText("");
+				Findit f=new Findit();
+				HashSet<String> a=f.findWeek(x);
+				int count=0;
+				String[] schedule=new String[a.size()];
+				Iterator iter = a.iterator();
+				while (iter.hasNext()) {
+					schedule[count++]=(String)iter.next();
+				}
+				
+				for(int ii=0, mon=0, tue=1, wed=2, thu=3, fri=4;
+						ii<schedule.length;ii++){
+					
+					//String title=f.getTitle(schedule[ii]);
+					
+					if(f.findMo(schedule[ii])){
+						Event iii1 = new Event();
+						Event iii2 = new Event();
+						Event iii3 = new Event();
+						Event iii4 = new Event();
+						Event iii5 = new Event();
+						Event iii6 = new Event();
+						Event iii7 = new Event();
+						Event iii8 = new Event();
+						Event iii9 = new Event();
+						Event iii10 = new Event();
+
+						String event="Mo";
+						String startTime=f.findStartTime(schedule[ii]);
+
+						String endTime=f.findEndTime(schedule[ii]);
+						System.out.print(event+"\t");
+
+						Calendar cal1 = Calendar.getInstance();
+						
+						//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+						/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+						cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+						cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+						cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+						
+						cal1.set(Calendar.MONTH, 2);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 31);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+
+						iii1.setTime(cal1.getTime());
+						iii1.setStartDate(cal1.getTime());
+						iii1.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 7);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii2.setTime(cal1.getTime());
+						iii2.setStartDate(cal1.getTime());
+						iii2.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 14);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii3.setTime(cal1.getTime());
+						iii3.setStartDate(cal1.getTime());
+						iii3.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 21);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii4.setTime(cal1.getTime());
+						iii4.setStartDate(cal1.getTime());
+						iii4.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 28);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii5.setTime(cal1.getTime());
+						iii5.setStartDate(cal1.getTime());
+						iii5.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 5);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii6.setTime(cal1.getTime());
+						iii6.setStartDate(cal1.getTime());
+						iii6.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 12);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii7.setTime(cal1.getTime());
+						iii7.setStartDate(cal1.getTime());
+						iii7.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 19);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii8.setTime(cal1.getTime());
+						iii8.setStartDate(cal1.getTime());
+						iii8.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 26);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii9.setTime(cal1.getTime());
+						iii9.setStartDate(cal1.getTime());
+						iii9.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 5);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 2);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii10.setTime(cal1.getTime());
+						iii10.setStartDate(cal1.getTime());
+						iii10.setTitle(f.getTitle(schedule[ii]));
+				
+						mEvents.add(iii1);
+						mEvents.add(iii2);
+						mEvents.add(iii3);
+						mEvents.add(iii4);
+						mEvents.add(iii5);
+						mEvents.add(iii6);
+						mEvents.add(iii7);
+						mEvents.add(iii8);
+						mEvents.add(iii9);
+						mEvents.add(iii10);
+
+						System.out.print(startTime+"\t");
+
+						System.out.println(endTime);
+						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+					}
+
+					if(f.findTu(schedule[ii])){
+						Event iii1 = new Event();
+						Event iii2 = new Event();
+						Event iii3 = new Event();
+						Event iii4 = new Event();
+						Event iii5 = new Event();
+						Event iii6 = new Event();
+						Event iii7 = new Event();
+						Event iii8 = new Event();
+						Event iii9 = new Event();
+						Event iii10 = new Event();
+
+						String event="Mo";
+						String startTime=f.findStartTime(schedule[ii]);
+
+						String endTime=f.findEndTime(schedule[ii]);
+						System.out.print(event+"\t");
+
+						Calendar cal1 = Calendar.getInstance();
+						
+						//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+						/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+						cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+						cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+						cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+						cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 1);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+
+						iii1.setTime(cal1.getTime());
+						iii1.setStartDate(cal1.getTime());
+						iii1.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 8);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii2.setTime(cal1.getTime());
+						iii2.setStartDate(cal1.getTime());
+						iii2.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 15);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii3.setTime(cal1.getTime());
+						iii3.setStartDate(cal1.getTime());
+						iii3.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 22);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii4.setTime(cal1.getTime());
+						iii4.setStartDate(cal1.getTime());
+						iii4.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 3);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 29);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii5.setTime(cal1.getTime());
+						iii5.setStartDate(cal1.getTime());
+						iii5.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 6);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii6.setTime(cal1.getTime());
+						iii6.setStartDate(cal1.getTime());
+						iii6.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 13);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii7.setTime(cal1.getTime());
+						iii7.setStartDate(cal1.getTime());
+						iii7.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 20);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii8.setTime(cal1.getTime());
+						iii8.setStartDate(cal1.getTime());
+						iii8.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 4);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 27);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii9.setTime(cal1.getTime());
+						iii9.setStartDate(cal1.getTime());
+						iii9.setTitle(f.getTitle(schedule[ii]));
+						
+						cal1.set(Calendar.MONTH, 5);
+						cal1.set(Calendar.YEAR, 2014);
+						cal1.set(Calendar.DAY_OF_MONTH, 3);
+						cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+						cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+						
+						
+						iii10.setTime(cal1.getTime());
+						iii10.setStartDate(cal1.getTime());
+						iii10.setTitle(f.getTitle(schedule[ii]));
+				
+						mEvents.add(iii1);
+						mEvents.add(iii2);
+						mEvents.add(iii3);
+						mEvents.add(iii4);
+						mEvents.add(iii5);
+						mEvents.add(iii6);
+						mEvents.add(iii7);
+						mEvents.add(iii8);
+						mEvents.add(iii9);
+						mEvents.add(iii10);
+
+						System.out.print(startTime+"\t");
+
+						System.out.println(endTime);
+						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+						}
+
+						if(f.findWe(schedule[ii])){
+							Event iii1 = new Event();
+							Event iii2 = new Event();
+							Event iii3 = new Event();
+							Event iii4 = new Event();
+							Event iii5 = new Event();
+							Event iii6 = new Event();
+							Event iii7 = new Event();
+							Event iii8 = new Event();
+							Event iii9 = new Event();
+							Event iii10 = new Event();
+
+							String event="Mo";
+							String startTime=f.findStartTime(schedule[ii]);
+
+							String endTime=f.findEndTime(schedule[ii]);
+							System.out.print(event+"\t");
+
+							Calendar cal1 = Calendar.getInstance();
+							
+							//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+							/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+							cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 2);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+
+							iii1.setTime(cal1.getTime());
+							iii1.setStartDate(cal1.getTime());
+							iii1.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 9);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii2.setTime(cal1.getTime());
+							iii2.setStartDate(cal1.getTime());
+							iii2.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 16);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii3.setTime(cal1.getTime());
+							iii3.setStartDate(cal1.getTime());
+							iii3.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 23);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii4.setTime(cal1.getTime());
+							iii4.setStartDate(cal1.getTime());
+							iii4.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 30);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii5.setTime(cal1.getTime());
+							iii5.setStartDate(cal1.getTime());
+							iii5.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 7);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii6.setTime(cal1.getTime());
+							iii6.setStartDate(cal1.getTime());
+							iii6.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 14);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii7.setTime(cal1.getTime());
+							iii7.setStartDate(cal1.getTime());
+							iii7.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 21);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii8.setTime(cal1.getTime());
+							iii8.setStartDate(cal1.getTime());
+							iii8.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 28);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii9.setTime(cal1.getTime());
+							iii9.setStartDate(cal1.getTime());
+							iii9.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 5);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 4);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii10.setTime(cal1.getTime());
+							iii10.setStartDate(cal1.getTime());
+							iii10.setTitle(f.getTitle(schedule[ii]));
+					
+							mEvents.add(iii1);
+							mEvents.add(iii2);
+							mEvents.add(iii3);
+							mEvents.add(iii4);
+							mEvents.add(iii5);
+							mEvents.add(iii6);
+							mEvents.add(iii7);
+							mEvents.add(iii8);
+							mEvents.add(iii9);
+							mEvents.add(iii10);
+
+							System.out.print(startTime+"\t");
+
+							System.out.println(endTime);
+							((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+						}
+
+						if(f.findTh(schedule[ii])){
+							Event iii1 = new Event();
+							Event iii2 = new Event();
+							Event iii3 = new Event();
+							Event iii4 = new Event();
+							Event iii5 = new Event();
+							Event iii6 = new Event();
+							Event iii7 = new Event();
+							Event iii8 = new Event();
+							Event iii9 = new Event();
+							Event iii10 = new Event();
+
+							String event="Mo";
+							String startTime=f.findStartTime(schedule[ii]);
+
+							String endTime=f.findEndTime(schedule[ii]);
+							System.out.print(event+"\t");
+
+							Calendar cal1 = Calendar.getInstance();
+							
+							//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+							/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+							cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 3);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+
+							iii1.setTime(cal1.getTime());
+							iii1.setStartDate(cal1.getTime());
+							iii1.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 10);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii2.setTime(cal1.getTime());
+							iii2.setStartDate(cal1.getTime());
+							iii2.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 17);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii3.setTime(cal1.getTime());
+							iii3.setStartDate(cal1.getTime());
+							iii3.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 24);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii4.setTime(cal1.getTime());
+							iii4.setStartDate(cal1.getTime());
+							iii4.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 1);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii5.setTime(cal1.getTime());
+							iii5.setStartDate(cal1.getTime());
+							iii5.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 8);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii6.setTime(cal1.getTime());
+							iii6.setStartDate(cal1.getTime());
+							iii6.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 15);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii7.setTime(cal1.getTime());
+							iii7.setStartDate(cal1.getTime());
+							iii7.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 22);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii8.setTime(cal1.getTime());
+							iii8.setStartDate(cal1.getTime());
+							iii8.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 29);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii9.setTime(cal1.getTime());
+							iii9.setStartDate(cal1.getTime());
+							iii9.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 5);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 5);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii10.setTime(cal1.getTime());
+							iii10.setStartDate(cal1.getTime());
+							iii10.setTitle(f.getTitle(schedule[ii]));
+					
+							mEvents.add(iii1);
+							mEvents.add(iii2);
+							mEvents.add(iii3);
+							mEvents.add(iii4);
+							mEvents.add(iii5);
+							mEvents.add(iii6);
+							mEvents.add(iii7);
+							mEvents.add(iii8);
+							mEvents.add(iii9);
+							mEvents.add(iii10);
+
+							System.out.print(startTime+"\t");
+
+							System.out.println(endTime);
+							((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+						}
+
+						if(f.findFr(schedule[ii])){
+							Event iii1 = new Event();
+							Event iii2 = new Event();
+							Event iii3 = new Event();
+							Event iii4 = new Event();
+							Event iii5 = new Event();
+							Event iii6 = new Event();
+							Event iii7 = new Event();
+							Event iii8 = new Event();
+							Event iii9 = new Event();
+							Event iii10 = new Event();
+
+							String event="Mo";
+							String startTime=f.findStartTime(schedule[ii]);
+
+							String endTime=f.findEndTime(schedule[ii]);
+							System.out.print(event+"\t");
+
+							Calendar cal1 = Calendar.getInstance();
+							
+							//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+							/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+							cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+							cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+							cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 4);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+
+							iii1.setTime(cal1.getTime());
+							iii1.setStartDate(cal1.getTime());
+							iii1.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 11);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii2.setTime(cal1.getTime());
+							iii2.setStartDate(cal1.getTime());
+							iii2.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 18);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii3.setTime(cal1.getTime());
+							iii3.setStartDate(cal1.getTime());
+							iii3.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 3);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 25);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii4.setTime(cal1.getTime());
+							iii4.setStartDate(cal1.getTime());
+							iii4.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 2);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii5.setTime(cal1.getTime());
+							iii5.setStartDate(cal1.getTime());
+							iii5.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 9);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii6.setTime(cal1.getTime());
+							iii6.setStartDate(cal1.getTime());
+							iii6.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 16);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii7.setTime(cal1.getTime());
+							iii7.setStartDate(cal1.getTime());
+							iii7.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 23);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii8.setTime(cal1.getTime());
+							iii8.setStartDate(cal1.getTime());
+							iii8.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 4);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 30);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii9.setTime(cal1.getTime());
+							iii9.setStartDate(cal1.getTime());
+							iii9.setTitle(f.getTitle(schedule[ii]));
+							
+							cal1.set(Calendar.MONTH, 5);
+							cal1.set(Calendar.YEAR, 2014);
+							cal1.set(Calendar.DAY_OF_MONTH, 6);
+							cal1.set(Calendar.HOUR_OF_DAY, Integer.parseInt(startTime.split(":")[0]));
+							cal1.set(Calendar.MINUTE, Integer.parseInt(startTime.split(":")[1]));
+							
+							
+							iii10.setTime(cal1.getTime());
+							iii10.setStartDate(cal1.getTime());
+							iii10.setTitle(f.getTitle(schedule[ii]));
+					
+							mEvents.add(iii1);
+							mEvents.add(iii2);
+							mEvents.add(iii3);
+							mEvents.add(iii4);
+							mEvents.add(iii5);
+							mEvents.add(iii6);
+							mEvents.add(iii7);
+							mEvents.add(iii8);
+							mEvents.add(iii9);
+							mEvents.add(iii10);
+
+							System.out.print(startTime+"\t");
+
+							System.out.println(endTime);
+							((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+						}
+	/*
+						if(f.findSa(schedule[ii])){
+							String event="Sa";
+							String startTime=f.findStartTime(schedule[ii]);
+							String endTime=f.findEndTime(schedule[ii]);
+							System.out.print(event+"\t");
+							System.out.print(startTime+"\t");
+							System.out.println(endTime);
+							((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+						}
+	*/
+					}
+
+	        	pictureTaken = false;
+
+
+	        	//ClipData data = ClipData.newPlainText("", "");
+	        	//manager.setPrimaryClip(data);
+			
+			
+/*
+			FragmentManager fm1 = getActivity().getSupportFragmentManager();
+			ClipboardManager manager1 = (ClipboardManager)getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+			//String x = manager.getText().toString();
+			String x1 = manager1.getText().toString();
+			
+/*
 		 if(pictureTaken) {
 			Log.d("msg", "getting schedule info");
 			//manager.setText("");
-			Findit f=new Findit();
-			HashSet<String> a=f.findWeek(x);
-			int count=0;
-			String[] schedule=new String[a.size()];
-			Iterator iter = a.iterator();
-			while (iter.hasNext()) {
-				schedule[count++]=(String)iter.next();
+			Findit f1=new Findit();
+			HashSet<String> a1=f1.findWeek(x1);
+			int count1=0;
+			String[] schedule1=new String[a1.size()];
+			Iterator iter1 = a1.iterator();
+			while (iter1.hasNext()) {
+				schedule1[count1++]=(String)iter1.next();
 			}
 
-			for(int ii=0;ii<schedule.length;ii++){
+			for(int ii=0;ii<schedule1.length;ii++){
 				
 				//String title=f.getTitle(schedule[ii]);
 				
-				if(f.findMo(schedule[ii])){
+				if(f1.findMo(schedule1[ii])){
 					Event iii1 = new Event();
 					Event iii2 = new Event();
 					Event iii3 = new Event();
@@ -216,9 +1855,9 @@ public class WaydFragment extends ListFragment {
 					Event iii10 = new Event();
 
 					String event="Mo";
-					String startTime=f.findStartTime(schedule[ii]);
+					String startTime=f1.findStartTime(schedule1[ii]);
 
-					String endTime=f.findEndTime(schedule[ii]);
+					String endTime=f1.findEndTime(schedule1[ii]);
 					System.out.print(event+"\t");
 
 					Calendar cal1 = Calendar.getInstance();
@@ -232,15 +1871,15 @@ public class WaydFragment extends ListFragment {
 					cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
 					cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
 					cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
-					
-					cal1.set(Calendar.MONTH, 5);
+/*					
+					cal1.set(Calendar.MONTH, 3);
 					cal1.set(Calendar.YEAR, 2014);
-					cal1.set(Calendar.DAY_OF_MONTH, 2);
+					cal1.set(Calendar.DAY_OF_MONTH, 31);
 					
 
 					iii1.setTime(cal1.getTime());
 					iii1.setStartDate(cal1.getTime());
-					iii1.setTitle(f.getTitle(schedule[ii]));
+					iii1.setTitle(f1.getTitle(schedule1[ii]));
 					
 					cal1.set(Calendar.MONTH, 5);
 					cal1.set(Calendar.YEAR, 2014);
@@ -248,7 +1887,7 @@ public class WaydFragment extends ListFragment {
 					
 					iii2.setTime(cal1.getTime());
 					iii2.setStartDate(cal1.getTime());
-					iii2.setTitle(f.getTitle(schedule[ii]));
+					iii2.setTitle(f1.getTitle(schedule1[ii]));
 					
 					cal1.set(Calendar.MONTH, 5);
 					cal1.set(Calendar.YEAR, 2014);
@@ -256,7 +1895,7 @@ public class WaydFragment extends ListFragment {
 					
 					iii3.setTime(cal1.getTime());
 					iii3.setStartDate(cal1.getTime());
-					iii3.setTitle(f.getTitle(schedule[ii]));
+					iii3.setTitle(f1.getTitle(schedule1[ii]));
 					
 					cal1.set(Calendar.MONTH, 5);
 					cal1.set(Calendar.YEAR, 2014);
@@ -264,7 +1903,7 @@ public class WaydFragment extends ListFragment {
 					
 					iii4.setTime(cal1.getTime());
 					iii4.setStartDate(cal1.getTime());
-					iii4.setTitle(f.getTitle(schedule[ii]));
+					iii4.setTitle(f1.getTitle(schedule1[ii]));
 					
 					cal1.set(Calendar.MONTH, 5);
 					cal1.set(Calendar.YEAR, 2014);
@@ -272,7 +1911,7 @@ public class WaydFragment extends ListFragment {
 					
 					iii5.setTime(cal1.getTime());
 					iii5.setStartDate(cal1.getTime());
-					iii5.setTitle(f.getTitle(schedule[ii]));
+					iii5.setTitle(f1.getTitle(schedule1[ii]));
 					
 					cal1.set(Calendar.MONTH, 6);
 					cal1.set(Calendar.YEAR, 2014);
@@ -280,7 +1919,7 @@ public class WaydFragment extends ListFragment {
 					
 					iii6.setTime(cal1.getTime());
 					iii6.setStartDate(cal1.getTime());
-					iii6.setTitle(f.getTitle(schedule[ii]));
+					iii6.setTitle(f1.getTitle(schedule1[ii]));
 					
 					cal1.set(Calendar.MONTH, 6);
 					cal1.set(Calendar.YEAR, 2014);
@@ -288,7 +1927,7 @@ public class WaydFragment extends ListFragment {
 					
 					iii7.setTime(cal1.getTime());
 					iii7.setStartDate(cal1.getTime());
-					iii7.setTitle(f.getTitle(schedule[ii]));
+					iii7.setTitle(f1.getTitle(schedule1[ii]));
 					
 					cal1.set(Calendar.MONTH, 6);
 					cal1.set(Calendar.YEAR, 2014);
@@ -296,7 +1935,7 @@ public class WaydFragment extends ListFragment {
 					
 					iii8.setTime(cal1.getTime());
 					iii8.setStartDate(cal1.getTime());
-					iii8.setTitle(f.getTitle(schedule[ii]));
+					iii8.setTitle(f1.getTitle(schedule1[ii]));
 					
 					cal1.set(Calendar.MONTH, 6);
 					cal1.set(Calendar.YEAR, 2014);
@@ -304,7 +1943,7 @@ public class WaydFragment extends ListFragment {
 					
 					iii9.setTime(cal1.getTime());
 					iii9.setStartDate(cal1.getTime());
-					iii9.setTitle(f.getTitle(schedule[ii]));
+					iii9.setTitle(f1.getTitle(schedule1[ii]));
 					
 					cal1.set(Calendar.MONTH, 7);
 					cal1.set(Calendar.YEAR, 2014);
@@ -312,7 +1951,7 @@ public class WaydFragment extends ListFragment {
 					
 					iii10.setTime(cal1.getTime());
 					iii10.setStartDate(cal1.getTime());
-					iii10.setTitle(f.getTitle(schedule[ii]));
+					iii10.setTitle(f1.getTitle(schedule1[ii]));
 					
 			
 					mEvents.add(iii1);
@@ -336,10 +1975,10 @@ public class WaydFragment extends ListFragment {
 					((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
 				}
 
-				if(f.findTu(schedule[ii])){
+				if(f1.findTu(schedule1[ii])){
 					String event="Tu";
-					String startTime=f.findStartTime(schedule[ii]);
-					String endTime=f.findEndTime(schedule[ii]);
+					String startTime=f1.findStartTime(schedule1[ii]);
+					String endTime=f1.findEndTime(schedule1[ii]);
 					System.out.print(event+"\t");
 
 					Event iii = new Event();
@@ -363,7 +2002,7 @@ public class WaydFragment extends ListFragment {
 						System.out.println(endTime);
 						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
 					}
-
+*/
 					/*if(f.findWe(schedule[ii])){
 						String event="We";
 						String startTime=f.findStartTime(schedule[ii]);
@@ -420,10 +2059,10 @@ public class WaydFragment extends ListFragment {
 						System.out.println(endTime);
 						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
 					}*/
-
-					if(f.findFr(schedule[ii])){
+/*
+					if(f1.findFr(schedule1[ii])){
 						String event="Fr";
-						String startTime=f.findStartTime(schedule[ii]);
+						String startTime=f1.findStartTime(schedule1[ii]);
 
 						Event iii = new Event();
 						Calendar cal = Calendar.getInstance();
@@ -447,13 +2086,14 @@ public class WaydFragment extends ListFragment {
 
 
 
-						String endTime=f.findEndTime(schedule[ii]);
+						String endTime=f1.findEndTime(schedule1[ii]);
 						System.out.print(event+"\t");
 						System.out.print(startTime+"\t");
 						System.out.println(endTime);
 						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
 					}
-
+*/
+/*
 					if(f.findSa(schedule[ii])){
 						String event="Sa";
 						String startTime=f.findStartTime(schedule[ii]);
@@ -463,23 +2103,23 @@ public class WaydFragment extends ListFragment {
 						System.out.println(endTime);
 						((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
 					}
-
-
+*/
+/*
 				}
 
 			EventList.get(getActivity()).saveEvents(mEvents);
 			 pictureTaken = false;
 			 
 			}
+			ScheduleInfoFragment dialog = new ScheduleInfoFragment("My Schedule",manager1.getText().toString());
+			//manager.setText("");
+        	dialog.show(fm1, SCHEDULE_INFO_DIALOG);
+*/        	
 
-
-
+			}
 			ScheduleInfoFragment dialog = new ScheduleInfoFragment("My Schedule",manager.getText().toString());
 			//manager.setText("");
         	dialog.show(fm, SCHEDULE_INFO_DIALOG);
-        	
-        
-
 			return true;
 
 
@@ -501,6 +2141,11 @@ public class WaydFragment extends ListFragment {
 			
 		case R.id.help_page:
 			showOverLay();
+			return true;
+		case R.id.instruction:
+			Intent intentI = getActivity().getPackageManager().getLaunchIntentForPackage("com.manishkpr.viewpagerimagegallery");
+			intentI.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intentI);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);	
@@ -663,6 +2308,48 @@ public class WaydFragment extends ListFragment {
 			calendar.setDate(mEvents.get(mEvents.size()-1).getStartDate().getTime());
 
 	}
+	
+	
+	private void populate(Findit f, Date start, String schedule, int weeks)
+	{
+		Date temp = new Date(start.getTime());
+
+		String event="Mo";
+		String startTime=f.findStartTime(schedule);
+
+		String endTime=f.findEndTime(schedule);
+		System.out.print(event+"\t");
+		
+		temp.setHours(Integer.parseInt(startTime.split(":")[0]));
+		temp.setMinutes(Integer.parseInt(startTime.split(":")[1]));
+
+		Calendar cal = Calendar.getInstance();
+		for(int n = 0; n < weeks; n++)
+		{
+			Event iii = new Event();
+
+			//cal.set(2014, 5, 27, (int)startTime.charAt(0), 0);
+			//cal.set(2014, 5, 27, Integer.parseInt(startTime.split(":")[0]),
+					//Integer.parseInt(startTime.split(":")[1]));
+			cal.setTime(temp);
+
+			iii.setTime(cal.getTime());
+			//iii.setTitle("Class " + (classNumber++));
+			iii.setTitle(f.getTitle(schedule));
+
+
+			mEvents.add(iii);
+
+			System.out.print(startTime+"\t");
+
+			System.out.println(endTime);
+			((EventAdapter)lv.getAdapter()).notifyDataSetChanged();
+			
+			cal.add(cal.DATE, 7);
+			temp.setDate(cal.DATE);
+		}
+	}
+	
 
 	private class EventAdapter extends ArrayAdapter<Event> {
 		public EventAdapter(ArrayList<Event> events) {

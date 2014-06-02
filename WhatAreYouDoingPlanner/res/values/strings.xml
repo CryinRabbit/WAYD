@@ -27,6 +27,6 @@
  	<string name="choose_existing">Choose Existing</string>
  	<string name="my_schedule">My Schedule</string>
  	<string name="create_event">Create Event</string>
- 	
+ 	<string name="instruction">Instruction</string>
 
 </resources>

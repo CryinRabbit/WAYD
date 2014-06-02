@@ -6,6 +6,7 @@ package com.cryinrabbit.whatareyoudoingplanner;
  * User can input title, time and location for the event
  */
 
+
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
@@ -22,11 +23,13 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.NotificationCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class EventFragment extends android.support.v4.app.Fragment {
 	
@@ -44,6 +47,8 @@ public class EventFragment extends android.support.v4.app.Fragment {
 	private static final int REQUEST_DATE = 1;
 	private Button mCreateEventButton;
 	private Button mCreateReminder;
+	
+	private ImageButton imageCreateEventButton; 
 	
     public static final int NOTIFICATION_ID = 1;
     
@@ -325,8 +330,8 @@ public class EventFragment extends android.support.v4.app.Fragment {
 			}
 		});
 		
-		mCreateEventButton = (Button)v.findViewById(R.id.createevent);
-		mCreateEventButton.setOnClickListener(new View.OnClickListener() {
+		imageCreateEventButton = (ImageButton)v.findViewById(R.id.createevent);
+		imageCreateEventButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
@@ -338,4 +343,5 @@ public class EventFragment extends android.support.v4.app.Fragment {
 		
 		return v;
 	}
+	
 }

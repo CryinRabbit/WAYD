@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg0" >
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/event_title_label"
+        style="?android:listSeparatorTextViewStyle"/>
+    
+     <EditText 
+         android:id="@+id/event_title"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="@string/event_title"/>
+     
+     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/date_picker_title"
+        style="?android:listSeparatorTextViewStyle"/>
+     
+     <Button
+           android:id="@+id/event_date"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:text="@string/setdate"
+           android:textSize="15sp"
+           android:padding="5dp" />
+     
+    
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/event_time"
+        style="?android:listSeparatorTextViewStyle"/>
+      
+       <Button
+           android:id="@+id/event_time"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+           android:text="@string/settime"
+           android:textSize="15sp" 
+           android:padding="5dp" />
+      
+        <TextView
+       	 	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:text="@string/event_location"
+        	style="?android:listSeparatorTextViewStyle"/>
+
+         <EditText 
+         android:id="@+id/event_location"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="@string/event_location"/>
+         
+         <TextView
+       	 	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:text="@string/event_description"
+        	style="?android:listSeparatorTextViewStyle"/>
+         
+         <EditText 
+         android:id="@+id/event_description"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="@string/event_description"/>
+
+<<<<<<< HEAD
+         <ImageButton
+=======
+     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="create event reminder"
+        style="?android:listSeparatorTextViewStyle"/>
+     
+     <Button
+           android:id="@+id/event_reminder"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+             android:onClick="sendNotification"
+             android:text="Set Reminder" 
+           android:textSize="15sp"
+           android:padding="5dp" />
+
+         <Button
+>>>>>>> d46652283b96aa2bde7782289c579075a94474b8
+             android:id="@+id/createevent"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:src="@drawable/new_button" />
+
+</LinearLayout>

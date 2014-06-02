@@ -313,15 +313,17 @@ public class EventFragment extends android.support.v4.app.Fragment {
 			}
 		});
 		
-	/*	mCreateReminder = (Button)v.findViewById(R.id.event_reminder);
-		mCreateEventButton.setOnClickListener(new View.OnClickListener() {
+		mCreateReminder = (Button)v.findViewById(R.id.event_reminder);
+		mCreateReminder.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setClassName("com.blundell.tut", "com.blundell.tut.ui.phone.MainActivity");
 				
-				sendNotification(v);
+				getActivity().startActivity(intent);
 			}
-		});*/
+		});
 		
 		mCreateEventButton = (Button)v.findViewById(R.id.createevent);
 		mCreateEventButton.setOnClickListener(new View.OnClickListener() {

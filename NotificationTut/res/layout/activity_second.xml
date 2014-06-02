@@ -7,6 +7,13 @@
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="You&apos;ve made it back after a notification, yay!" />
+        android:text="EventFragment" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="returnWAYD"
+        android:text="Button" />
+    
 </LinearLayout>

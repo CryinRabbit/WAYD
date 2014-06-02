@@ -84,10 +84,11 @@
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:gravity="center"
-             android:onClick="sendNotification"
-             android:text="Set Reminder" 
+           android:text="Set Reminder" 
            android:textSize="15sp"
            android:padding="5dp" />
+     <!-- 
+             android:onClick="sendNotification" -->
 
          <Button
              android:id="@+id/createevent"

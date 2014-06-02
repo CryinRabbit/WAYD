@@ -57,6 +57,7 @@ public class MainActivity extends Activity  {
     	scheduleClient.setAlarmForNotification(c);
     	// Notify the user what they just did
     	Toast.makeText(this, "Notification set for: "+ day +"/"+ (month+1) +"/"+ year, Toast.LENGTH_SHORT).show();
+    	finish();
     }
     
     @Override

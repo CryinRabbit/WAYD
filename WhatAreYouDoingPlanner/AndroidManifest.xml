@@ -71,7 +71,18 @@
     
     <activity android:name="edu.sfsu.cs.orange.ocr.PreferencesActivity" />
     
+            <activity android:name="com.blundell.tut.ui.phone.MainActivity"
+              android:screenOrientation="landscape"
+              android:configChanges="orientation|keyboardHidden|screenSize"
+              android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+              android:windowSoftInputMode="stateAlwaysHidden" 
+              android:parentActivityName="com.cryinrabbit.whatareyoudoingplanner.WaydActivity"  >           
+              </activity>
        
+        <activity android:name="com.blundell.tut.ui.phone.SecondActivity" />
+        <service android:name="com.blundell.tut.service.ScheduleService" />
+        <service android:name="com.blundell.tut.service.NotifyService" />
+            
     </application>
     
     <uses-permission android:name="android.permission.CAMERA"/>

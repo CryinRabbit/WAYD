@@ -42,7 +42,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.cryinrabbit.service.Findit;
-import com.roomorama.caldroid.CaldroidFragment;
+//import com.roomorama.caldroid.CaldroidFragment;
 
 import android.content.SharedPreferences;
 
@@ -481,10 +481,11 @@ public class WaydFragment extends ListFragment {
 			//return true;
 		
 		case R.id.about_page:
-			AlertDialog aboutDialog = new AlertDialog.Builder(getActivity()).setTitle("About").setMessage("Version1.0")
+			AlertDialog aboutDialog = new AlertDialog.Builder(getActivity(),AlertDialog.THEME_HOLO_DARK)
+			.setTitle("About").setMessage("Version1.0")
 			.setPositiveButton(android.R.string.ok, null).show();
 			WindowManager.LayoutParams params = aboutDialog.getWindow().getAttributes();
-			params.alpha = 0.6f;
+			params.alpha = 0.76f;
 			aboutDialog.getWindow().setAttributes(params);
 			return true;
 			
@@ -629,7 +630,7 @@ public class WaydFragment extends ListFragment {
             	Event e = (Event)lv.getItemAtPosition(position);
             	
             	FragmentManager fm = getActivity().getSupportFragmentManager();
-            	EventInfoFragment dialog = new EventInfoFragment(e.getTitle(), e.getLocation(), e.getTime().toString());
+            	EventInfoFragment dialog = new EventInfoFragment(e.getTitle(), e.getLocation(), e.getDescription(), e.getTime().toString());
             	dialog.show(fm, EVENT_INFO_DIALOG);
               
             }

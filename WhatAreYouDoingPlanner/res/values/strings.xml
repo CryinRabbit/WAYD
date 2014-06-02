@@ -17,6 +17,7 @@
     <string name="event_title">Event Title</string>
     <string name="event_time">Event Time</string>
     <string name="event_location">Event Location</string>
+    <string name="event_description">Event Description</string>
     <string name="date_picker_title">Date Of Event</string>
     <string name="time_picker_title">Time Of Event</string>
  
@@ -26,5 +27,6 @@
  	<string name="choose_existing">Choose Existing</string>
  	<string name="my_schedule">My Schedule</string>
  	<string name="create_event">Create Event</string>
+ 	
 
 </resources>

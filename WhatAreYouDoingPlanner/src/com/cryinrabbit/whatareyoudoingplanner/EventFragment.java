@@ -30,6 +30,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 	private EditText mTitleField; //title field where user enters name of event
 	private Button mTimeButton; //button where user selects the time
 	private EditText mLocationField; //field where user enters location
+	private EditText mDescriptionField; //field where user enters description
 	public static final String EXTRA_EVENT_ID =
 			"com.cryinrabbit.whatareyoudoingplanner.event_id";
 	private static final String DIALOG_TIME = "time";
@@ -187,7 +188,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 		}
 	}
 	
-	/*displays the add event view with title field, location field, time button and date button
+	/*displays the add event view with title field, location field, description field, time button and date button
 	 */
 	public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
 		
@@ -198,7 +199,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 		//takes care of title field
 		mTitleField = (EditText)v.findViewById(R.id.event_title);
 		mTitleField.setText(mEvent.getTitle());
-		getActivity().setTitle(mEvent.getTitle());
+		getActivity().setTitle("New Event");
 		
 		mTitleField.addTextChangedListener(new TextWatcher() {
 			public void onTextChanged(CharSequence c, int start, int before, int count) {
@@ -248,6 +249,36 @@ public class EventFragment extends android.support.v4.app.Fragment {
 				
 		});
 
+		
+		//takes care of description field
+		mDescriptionField = (EditText)v.findViewById(R.id.event_description);
+		mDescriptionField.setText(mEvent.getDescription());
+		mEvent.setLocation("(No Description)");
+		getActivity().setTitle("New Event");
+
+		mDescriptionField.addTextChangedListener(new TextWatcher() {
+			public void onTextChanged(CharSequence c, int start, int before, int count) {
+          
+				mEvent.setDescription(c.toString());
+				
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				
+				
+			}
+			
+			
+				
+		});
+		
 		
 		//Take care of time button action
 		mTimeButton = (Button)v.findViewById(R.id.event_time);

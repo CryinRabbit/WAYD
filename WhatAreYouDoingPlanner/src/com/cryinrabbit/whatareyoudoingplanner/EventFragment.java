@@ -6,18 +6,22 @@ package com.cryinrabbit.whatareyoudoingplanner;
  * User can input title, time and location for the event
  */
 
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +42,10 @@ public class EventFragment extends android.support.v4.app.Fragment {
 	private static final String DIALOG_DATE = "date";
 	private static final int REQUEST_DATE = 1;
 	private Button mCreateEventButton;
+	private Button mCreateReminder;
 	
+    public static final int NOTIFICATION_ID = 1;
+    
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -269,6 +276,16 @@ public class EventFragment extends android.support.v4.app.Fragment {
 			}
 		});
 		
+	/*	mCreateReminder = (Button)v.findViewById(R.id.event_reminder);
+		mCreateEventButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				sendNotification(v);
+			}
+		});*/
+		
 		mCreateEventButton = (Button)v.findViewById(R.id.createevent);
 		mCreateEventButton.setOnClickListener(new View.OnClickListener() {
 			
@@ -282,5 +299,4 @@ public class EventFragment extends android.support.v4.app.Fragment {
 		
 		return v;
 	}
-	
 }

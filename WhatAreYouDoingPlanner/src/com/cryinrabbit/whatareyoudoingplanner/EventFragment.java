@@ -253,7 +253,7 @@ public class EventFragment extends android.support.v4.app.Fragment {
 		//takes care of description field
 		mDescriptionField = (EditText)v.findViewById(R.id.event_description);
 		mDescriptionField.setText(mEvent.getDescription());
-		mEvent.setLocation("(No Description)");
+		mEvent.setDescription("(No Description)");
 		getActivity().setTitle("New Event");
 
 		mDescriptionField.addTextChangedListener(new TextWatcher() {

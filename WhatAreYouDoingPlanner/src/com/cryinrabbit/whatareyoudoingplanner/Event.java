@@ -19,6 +19,7 @@ public class Event {
 	private static final String JSON_DATE = "date";
 	private static final String JSON_TIME = "time";
 	private static final String JSON_LOCATION = "location";
+	private static final String JSON_DESCRIPTION = "description";
 	
 	private String mTitle;
 	private UUID mId;
@@ -40,7 +41,7 @@ public class Event {
 		json.put(JSON_DATE, mStartDate.getTime());
 		json.put(JSON_TIME, mTime.getTime());
 		json.put(JSON_LOCATION, mLocation);
-		
+		json.put(JSON_DESCRIPTION, mDescription);
 		
 		return json;
 	}
@@ -58,6 +59,7 @@ public class Event {
 		
 		mTime = new Date(json.getLong(JSON_TIME));
 		mLocation = json.getString(JSON_LOCATION);
+		mDescription = json.getString(JSON_DESCRIPTION);
 		mStartDate = new Date(json.getLong(JSON_DATE));
 	}
  	

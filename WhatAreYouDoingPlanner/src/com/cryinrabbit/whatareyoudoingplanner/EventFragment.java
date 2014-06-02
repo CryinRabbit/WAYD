@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 public class EventFragment extends android.support.v4.app.Fragment {
 	
@@ -38,7 +39,8 @@ public class EventFragment extends android.support.v4.app.Fragment {
 	private Button mDateButton;
 	private static final String DIALOG_DATE = "date";
 	private static final int REQUEST_DATE = 1;
-	private Button mCreateEventButton;
+	
+	private ImageButton imageCreateEventButton; 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -306,8 +308,8 @@ public class EventFragment extends android.support.v4.app.Fragment {
 			}
 		});
 		
-		mCreateEventButton = (Button)v.findViewById(R.id.createevent);
-		mCreateEventButton.setOnClickListener(new View.OnClickListener() {
+		imageCreateEventButton = (ImageButton)v.findViewById(R.id.createevent);
+		imageCreateEventButton.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {

@@ -45,12 +45,8 @@ public class EventFragment extends android.support.v4.app.Fragment {
 	private Button mCreateEventButton;
 	private Button mCreateReminder;
 	
-<<<<<<< HEAD
     public static final int NOTIFICATION_ID = 1;
     
-=======
-	
->>>>>>> 05198c3f82aa805992ef2eb98c2304bc7786a0d8
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

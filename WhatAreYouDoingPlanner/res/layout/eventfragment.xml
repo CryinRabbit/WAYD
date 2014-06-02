@@ -73,6 +73,22 @@
          android:layout_height="wrap_content"
          android:hint="@string/event_description"/>
 
+     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="create event reminder"
+        style="?android:listSeparatorTextViewStyle"/>
+     
+     <Button
+           android:id="@+id/event_reminder"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:gravity="center"
+             android:onClick="sendNotification"
+             android:text="Set Reminder" 
+           android:textSize="15sp"
+           android:padding="5dp" />
+
          <ImageButton
              android:id="@+id/createevent"
              android:layout_width="wrap_content"

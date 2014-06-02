@@ -21,6 +21,7 @@ public class EventList {
 	private Context mAppContext;
 	private ArrayList<Event> mEvents;
 	
+	
 	//Test code for JSON, delete or comment if not working!!!
 	private WaydJSONSerializer mSerializer;
 	
@@ -31,13 +32,15 @@ public class EventList {
 		
 		//TEST CODE FOR JSON, DELETE IF NOT WORKING!!
 		try {
-			mEvents = mSerializer.loadCrimes();
+			mEvents = mSerializer.loadEvents();
 		} catch(Exception e) {
 			mEvents = new ArrayList<Event>();
 			Log.e(TAG, "Error loading events: ", e);
 		}
 		
 	}
+	
+	
 	
 	/*
 	 * TEST CODE FOR JSON
@@ -48,7 +51,22 @@ public class EventList {
 			mSerializer.saveEvents(mEvents);
 			Log.d(TAG, "events saved to file");
 			return true;
-		} catch(Exception e ){
+		} catch(Exception e){
+			Log.e(TAG, "Error saving event: ", e);
+			return false;
+		}
+	}
+	
+	/*
+	 * TEST CODE FOR JSON
+	 * DELETE IF NOT WORKING
+	 */
+	public boolean saveEvents(ArrayList<Event> ev) {
+		try {
+			mSerializer.saveEvents(ev);
+			Log.d(TAG, "events saved to file");
+			return true;
+		} catch(Exception e){
 			Log.e(TAG, "Error saving event: ", e);
 			return false;
 		}

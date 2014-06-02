@@ -64,39 +64,40 @@ public final class R {
         public static final int sticker=0x7f020014;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f080017;
-        public static final int about_page=0x7f080022;
-        public static final int action_settings=0x7f080020;
+        public static final int RelativeLayout1=0x7f080018;
+        public static final int about_page=0x7f080023;
+        public static final int action_settings=0x7f080021;
         public static final int button1=0x7f080002;
-        public static final int calendarView1=0x7f080012;
+        public static final int calendarView1=0x7f080013;
         public static final int calendar_gridview=0x7f08000a;
         public static final int calendar_left_arrow=0x7f080004;
         public static final int calendar_month_year_textview=0x7f080005;
         public static final int calendar_right_arrow=0x7f080006;
         public static final int calendar_title_view=0x7f080003;
         public static final int calendar_tv=0x7f080009;
-        public static final int chooseExisting=0x7f08001e;
-        public static final int createevent=0x7f080011;
+        public static final int chooseExisting=0x7f08001f;
+        public static final int createevent=0x7f080012;
         public static final int dialog_date_datePicker=0x7f08000b;
         public static final int dialog_time_timePicker=0x7f08000c;
         public static final int event_date=0x7f08000e;
-        public static final int event_list_item_timeTextView=0x7f080016;
-        public static final int event_list_item_titleTextView=0x7f080015;
+        public static final int event_description=0x7f080011;
+        public static final int event_list_item_timeTextView=0x7f080017;
+        public static final int event_list_item_titleTextView=0x7f080016;
         public static final int event_location=0x7f080010;
         public static final int event_time=0x7f08000f;
         public static final int event_title=0x7f08000d;
         public static final int fragmentContainer=0x7f080001;
-        public static final int help_page=0x7f080021;
-        public static final int imageView1=0x7f08001a;
-        public static final int listView1=0x7f080013;
-        public static final int login_button=0x7f080018;
-        public static final int menu_item_new_event=0x7f08001b;
-        public static final int menu_item_new_picture=0x7f08001c;
+        public static final int help_page=0x7f080022;
+        public static final int imageView1=0x7f08001b;
+        public static final int listView1=0x7f080014;
+        public static final int login_button=0x7f080019;
+        public static final int menu_item_new_event=0x7f08001c;
+        public static final int menu_item_new_picture=0x7f08001d;
         public static final int months_infinite_pager=0x7f080008;
-        public static final int myIcon=0x7f080014;
-        public static final int myschedule=0x7f08001f;
-        public static final int overlayLayout=0x7f080019;
-        public static final int takePicture=0x7f08001d;
+        public static final int myIcon=0x7f080015;
+        public static final int myschedule=0x7f080020;
+        public static final int overlayLayout=0x7f08001a;
+        public static final int takePicture=0x7f08001e;
         public static final int viewPager=0x7f080000;
         public static final int weekday_gridview=0x7f080007;
     }
@@ -119,11 +120,12 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f050000;
-        public static final int choose_existing=0x7f050015;
-        public static final int create_event=0x7f050017;
-        public static final int date_picker_title=0x7f050010;
+        public static final int choose_existing=0x7f050016;
+        public static final int create_event=0x7f050018;
+        public static final int date_picker_title=0x7f050011;
         public static final int delete_crime=0x7f050008;
         public static final int edit_button=0x7f05000b;
+        public static final int event_description=0x7f050010;
         public static final int event_location=0x7f05000f;
         public static final int event_time=0x7f05000e;
         public static final int event_title=0x7f05000d;
@@ -133,15 +135,15 @@ public final class R {
         public static final int menu_about=0x7f050002;
         public static final int menu_help=0x7f050003;
         public static final int menu_settings=0x7f050001;
-        public static final int my_schedule=0x7f050016;
+        public static final int my_schedule=0x7f050017;
         public static final int new_event=0x7f050004;
         public static final int new_picture=0x7f050005;
-        public static final int setdate=0x7f050013;
-        public static final int settime=0x7f050012;
+        public static final int setdate=0x7f050014;
+        public static final int settime=0x7f050013;
         public static final int show_subtitle=0x7f050006;
         public static final int subtitle=0x7f050009;
-        public static final int take_photo=0x7f050014;
-        public static final int time_picker_title=0x7f050011;
+        public static final int take_photo=0x7f050015;
+        public static final int time_picker_title=0x7f050012;
     }
     public static final class style {
         /** 

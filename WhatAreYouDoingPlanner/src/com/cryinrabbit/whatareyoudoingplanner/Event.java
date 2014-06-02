@@ -70,6 +70,9 @@ public class Event {
 		mStartDate = new Date();
 		mEndDate = new Date();
 		mTime = new Date();
+		mLocation = "";
+		mDescription = "";
+		mTitle = "";
 		
 	}
 	

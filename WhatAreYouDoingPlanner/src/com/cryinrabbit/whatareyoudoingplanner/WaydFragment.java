@@ -5,6 +5,7 @@ package com.cryinrabbit.whatareyoudoingplanner;
  *Useless comment
  */
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -12,6 +13,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
+
+import org.json.JSONException;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -43,6 +46,10 @@ import android.widget.TextView;
 
 import com.cryinrabbit.service.Findit;
 //import com.roomorama.caldroid.CaldroidFragment;
+
+
+
+
 
 import android.content.SharedPreferences;
 
@@ -460,7 +467,9 @@ public class WaydFragment extends ListFragment {
 
 				}
 
+			EventList.get(getActivity()).saveEvents(mEvents);
 			 pictureTaken = false;
+			 
 			}
 
 
@@ -469,6 +478,7 @@ public class WaydFragment extends ListFragment {
 			//manager.setText("");
         	dialog.show(fm, SCHEDULE_INFO_DIALOG);
         	
+        
 
 			return true;
 

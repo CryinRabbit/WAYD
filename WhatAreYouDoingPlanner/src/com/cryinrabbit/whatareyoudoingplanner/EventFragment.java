@@ -12,9 +12,15 @@ import java.util.Date;
 import java.util.UUID;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NotificationCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -39,9 +45,13 @@ public class EventFragment extends android.support.v4.app.Fragment {
 	private Button mDateButton;
 	private static final String DIALOG_DATE = "date";
 	private static final int REQUEST_DATE = 1;
+	private Button mCreateEventButton;
+	private Button mCreateReminder;
 	
 	private ImageButton imageCreateEventButton; 
 	
+    public static final int NOTIFICATION_ID = 1;
+    
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -307,6 +317,16 @@ public class EventFragment extends android.support.v4.app.Fragment {
 				dialog.show(fm, DIALOG_DATE);
 			}
 		});
+		
+	/*	mCreateReminder = (Button)v.findViewById(R.id.event_reminder);
+		mCreateEventButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				sendNotification(v);
+			}
+		});*/
 		
 		imageCreateEventButton = (ImageButton)v.findViewById(R.id.createevent);
 		imageCreateEventButton.setOnClickListener(new View.OnClickListener() {

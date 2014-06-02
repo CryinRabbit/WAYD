@@ -7,9 +7,18 @@ package com.cryinrabbit.whatareyoudoingplanner;
 import java.util.Date;
 import java.util.UUID;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 
 public class Event {
+	
+	private static final String JSON_ID = "id";
+	private static final String JSON_TITLE = "title";
+	private static final String JSON_DATE = "date";
+	private static final String JSON_TIME = "time";
+	private static final String JSON_LOCATION = "location";
 	
 	private String mTitle;
 	private UUID mId;
@@ -18,6 +27,39 @@ public class Event {
 	private String mLocation;
 	private Date mTime;
 	
+	/*
+	 * Test code FOR JSON
+	 * DELETE IF NOT WORKING
+	 */
+	
+	public JSONObject toJSON() throws JSONException {
+		JSONObject json = new JSONObject();
+		json.put(JSON_ID, mId.toString());
+		json.put(JSON_TITLE, mTitle);
+		json.put(JSON_DATE, mStartDate.getTime());
+		json.put(JSON_TIME, mTime.getTime());
+		json.put(JSON_LOCATION, mLocation);
+		
+		
+		return json;
+	}
+	
+	/*
+	 * Test code FOR JSON
+	 * DELETE IF NOT WORKING
+	 */
+	
+	public Event(JSONObject json) throws JSONException {
+		mId = UUID.fromString(json.getString(JSON_ID));
+		if(json.has(JSON_TITLE)) {
+			mTitle = json.getString(JSON_TITLE);
+		}
+		
+		mTime = new Date(json.getLong(JSON_TIME));
+		mLocation = json.getString(JSON_LOCATION);
+		mStartDate = new Date(json.getLong(JSON_DATE));
+	}
+ 	
 	
 	
 	public Event() {

@@ -49,6 +49,12 @@ public class EventFragment extends android.support.v4.app.Fragment {
 		setHasOptionsMenu(true);
 	}
 	
+	@Override
+	public void onPause() {
+		super.onPause();
+		EventList.get(getActivity()).saveEvents();
+	}
+	
 	
 	
 

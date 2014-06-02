@@ -55,12 +55,23 @@
         	android:text="@string/event_location"
         	style="?android:listSeparatorTextViewStyle"/>
 
-        
          <EditText 
          android:id="@+id/event_location"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
          android:hint="@string/event_location"/>
+         
+         <TextView
+       	 	android:layout_width="match_parent"
+        	android:layout_height="wrap_content"
+        	android:text="@string/event_description"
+        	style="?android:listSeparatorTextViewStyle"/>
+         
+         <EditText 
+         android:id="@+id/event_description"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:hint="@string/event_description"/>
 
      <TextView
         android:layout_width="match_parent"

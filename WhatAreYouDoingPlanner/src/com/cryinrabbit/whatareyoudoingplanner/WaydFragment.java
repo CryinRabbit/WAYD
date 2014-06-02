@@ -5,12 +5,16 @@ package com.cryinrabbit.whatareyoudoingplanner;
  *Useless comment
  */
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Locale;
+
+import org.json.JSONException;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -42,6 +46,10 @@ import android.widget.TextView;
 
 import com.cryinrabbit.service.Findit;
 //import com.roomorama.caldroid.CaldroidFragment;
+
+
+
+
 
 import android.content.SharedPreferences;
 
@@ -196,7 +204,16 @@ public class WaydFragment extends ListFragment {
 				//String title=f.getTitle(schedule[ii]);
 				
 				if(f.findMo(schedule[ii])){
-					Event iii = new Event();
+					Event iii1 = new Event();
+					Event iii2 = new Event();
+					Event iii3 = new Event();
+					Event iii4 = new Event();
+					Event iii5 = new Event();
+					Event iii6 = new Event();
+					Event iii7 = new Event();
+					Event iii8 = new Event();
+					Event iii9 = new Event();
+					Event iii10 = new Event();
 
 					String event="Mo";
 					String startTime=f.findStartTime(schedule[ii]);
@@ -204,16 +221,111 @@ public class WaydFragment extends ListFragment {
 					String endTime=f.findEndTime(schedule[ii]);
 					System.out.print(event+"\t");
 
-					Calendar cal = Calendar.getInstance();
-					cal.set(2014, 5, 27, (int)startTime.charAt(0), 0);
+					Calendar cal1 = Calendar.getInstance();
+					
+					//cal.set(2014, 8, 2, (int)startTime.charAt(0), 0);
+					/*cal.set(2014, 6, 9, (int)startTime.charAt(0), 0);
+					cal.set(2014, 6, 16, (int)startTime.charAt(0), 0);
+					cal.set(2014, 6, 23, (int)startTime.charAt(0), 0);
+					cal.set(2014, 7, 30, (int)startTime.charAt(0), 0);
+					cal.set(2014, 7, 11, (int)startTime.charAt(0), 0);
+					cal.set(2014, 7, 18, (int)startTime.charAt(0), 0);
+					cal.set(2014, 7, 25, (int)startTime.charAt(0), 0);
+					cal.set(2014, 8, 1, (int)startTime.charAt(0), 0);*/
+					
+					cal1.set(Calendar.MONTH, 5);
+					cal1.set(Calendar.YEAR, 2014);
+					cal1.set(Calendar.DAY_OF_MONTH, 2);
+					
 
-
-
-					iii.setTime(cal.getTime());
-					iii.setTitle("Class " + (classNumber++));
-
-
-					mEvents.add(iii);
+					iii1.setTime(cal1.getTime());
+					iii1.setStartDate(cal1.getTime());
+					iii1.setTitle(f.getTitle(schedule[ii]));
+					
+					cal1.set(Calendar.MONTH, 5);
+					cal1.set(Calendar.YEAR, 2014);
+					cal1.set(Calendar.DAY_OF_MONTH, 9);
+					
+					iii2.setTime(cal1.getTime());
+					iii2.setStartDate(cal1.getTime());
+					iii2.setTitle(f.getTitle(schedule[ii]));
+					
+					cal1.set(Calendar.MONTH, 5);
+					cal1.set(Calendar.YEAR, 2014);
+					cal1.set(Calendar.DAY_OF_MONTH, 16);
+					
+					iii3.setTime(cal1.getTime());
+					iii3.setStartDate(cal1.getTime());
+					iii3.setTitle(f.getTitle(schedule[ii]));
+					
+					cal1.set(Calendar.MONTH, 5);
+					cal1.set(Calendar.YEAR, 2014);
+					cal1.set(Calendar.DAY_OF_MONTH, 23);
+					
+					iii4.setTime(cal1.getTime());
+					iii4.setStartDate(cal1.getTime());
+					iii4.setTitle(f.getTitle(schedule[ii]));
+					
+					cal1.set(Calendar.MONTH, 5);
+					cal1.set(Calendar.YEAR, 2014);
+					cal1.set(Calendar.DAY_OF_MONTH, 30);
+					
+					iii5.setTime(cal1.getTime());
+					iii5.setStartDate(cal1.getTime());
+					iii5.setTitle(f.getTitle(schedule[ii]));
+					
+					cal1.set(Calendar.MONTH, 6);
+					cal1.set(Calendar.YEAR, 2014);
+					cal1.set(Calendar.DAY_OF_MONTH, 7);
+					
+					iii6.setTime(cal1.getTime());
+					iii6.setStartDate(cal1.getTime());
+					iii6.setTitle(f.getTitle(schedule[ii]));
+					
+					cal1.set(Calendar.MONTH, 6);
+					cal1.set(Calendar.YEAR, 2014);
+					cal1.set(Calendar.DAY_OF_MONTH, 14);
+					
+					iii7.setTime(cal1.getTime());
+					iii7.setStartDate(cal1.getTime());
+					iii7.setTitle(f.getTitle(schedule[ii]));
+					
+					cal1.set(Calendar.MONTH, 6);
+					cal1.set(Calendar.YEAR, 2014);
+					cal1.set(Calendar.DAY_OF_MONTH, 21);
+					
+					iii8.setTime(cal1.getTime());
+					iii8.setStartDate(cal1.getTime());
+					iii8.setTitle(f.getTitle(schedule[ii]));
+					
+					cal1.set(Calendar.MONTH, 6);
+					cal1.set(Calendar.YEAR, 2014);
+					cal1.set(Calendar.DAY_OF_MONTH, 28);
+					
+					iii9.setTime(cal1.getTime());
+					iii9.setStartDate(cal1.getTime());
+					iii9.setTitle(f.getTitle(schedule[ii]));
+					
+					cal1.set(Calendar.MONTH, 7);
+					cal1.set(Calendar.YEAR, 2014);
+					cal1.set(Calendar.DAY_OF_MONTH, 4);
+					
+					iii10.setTime(cal1.getTime());
+					iii10.setStartDate(cal1.getTime());
+					iii10.setTitle(f.getTitle(schedule[ii]));
+					
+			
+					mEvents.add(iii1);
+					mEvents.add(iii2);
+					mEvents.add(iii3);
+					mEvents.add(iii4);
+					mEvents.add(iii5);
+					mEvents.add(iii6);
+					mEvents.add(iii7);
+					mEvents.add(iii8);
+					mEvents.add(iii9);
+					
+					
 
 
 
@@ -355,7 +467,9 @@ public class WaydFragment extends ListFragment {
 
 				}
 
+			EventList.get(getActivity()).saveEvents(mEvents);
 			 pictureTaken = false;
+			 
 			}
 
 
@@ -364,6 +478,7 @@ public class WaydFragment extends ListFragment {
 			//manager.setText("");
         	dialog.show(fm, SCHEDULE_INFO_DIALOG);
         	
+        
 
 			return true;
 
@@ -525,7 +640,7 @@ public class WaydFragment extends ListFragment {
             	Event e = (Event)lv.getItemAtPosition(position);
             	
             	FragmentManager fm = getActivity().getSupportFragmentManager();
-            	EventInfoFragment dialog = new EventInfoFragment(e.getTitle(), e.getLocation(), e.getTime().toString());
+            	EventInfoFragment dialog = new EventInfoFragment(e.getTitle(), e.getLocation(), e.getDescription(), e.getTime().toString());
             	dialog.show(fm, EVENT_INFO_DIALOG);
               
             }

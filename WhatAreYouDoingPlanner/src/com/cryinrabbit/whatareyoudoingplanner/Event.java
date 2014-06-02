@@ -16,6 +16,7 @@ public class Event {
 	private Date mStartDate;
 	private Date mEndDate;
 	private String mLocation;
+	private String mDescription;
 	private Date mTime;
 	
 	
@@ -36,6 +37,7 @@ public class Event {
 		e.mId = this.mId;
 		e.mTime = this.mTime;
 		e.mLocation = this.mLocation;
+		e.mDescription = this.mDescription;
 		
 		return e;
 	}
@@ -45,8 +47,17 @@ public class Event {
 		mLocation = loc;
 	}
 	
+	public void setDescription(String des) {
+		mDescription = des;
+		
+	}
+	
 	public String getLocation() {
 		return mLocation;
+	}
+	
+	public String getDescription() {
+		return mDescription;
 	}
 	
 	public String getTitle() {
@@ -92,5 +103,6 @@ public class Event {
 	public String toString() {
 		return mTitle;
 	}
+
 
 }

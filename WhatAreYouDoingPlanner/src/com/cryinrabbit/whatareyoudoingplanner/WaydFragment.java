@@ -525,7 +525,7 @@ public class WaydFragment extends ListFragment {
             	Event e = (Event)lv.getItemAtPosition(position);
             	
             	FragmentManager fm = getActivity().getSupportFragmentManager();
-            	EventInfoFragment dialog = new EventInfoFragment(e.getTitle(), e.getLocation(), e.getTime().toString());
+            	EventInfoFragment dialog = new EventInfoFragment(e.getTitle(), e.getLocation(), e.getDescription(), e.getTime().toString());
             	dialog.show(fm, EVENT_INFO_DIALOG);
               
             }
